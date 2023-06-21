@@ -19,7 +19,7 @@ def make_chain():
     vector_store = Chroma(
         collection_name="april-2023-economic",
         embedding_function=embedding,
-        persist_directory="src/data/chroma",
+        persist_directory="src/backend//data/chroma",
     )
 
     return ConversationalRetrievalChain.from_llm(
@@ -44,6 +44,7 @@ if __name__ == "__main__":
     chat_history = [
         SystemMessage(content=prompt)
     ]
+
 
     while True:
         print()

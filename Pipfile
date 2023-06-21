@@ -11,6 +11,7 @@ pdfplumber = "*"
 chromadb = "*"
 openai = "*"
 tiktoken = "*"
+flask = "*"
 
 [dev-packages]
 

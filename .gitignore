@@ -1,6 +1,9 @@
 .env
 venv
 .DS_Store
-src/data/chroma
-src/data/pdfs
-src/data/pdfs2
+/chroma
+/pdfs
+/pdfs2
+src/backend/data/chroma
+src/backend/data/pdfs
+src/backend/data/pdfs2
