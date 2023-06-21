@@ -5,7 +5,13 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.schema import HumanMessage, AIMessage, SystemMessage
 from dotenv import load_dotenv
 
+from langchain.schema import messages_from_dict, messages_to_dict
+
 from agendar import agendar
+
+import requests
+import os
+import json
 
 def make_chain():
     model = ChatOpenAI(
@@ -31,7 +37,9 @@ def make_chain():
 
 
 if __name__ == "__main__":
-    load_dotenv()
+    load_dotenv("../../")
+
+    
 
     with open('prompt2.txt', 'r', encoding='utf-8') as file:
         # Lee todo el contenido del archivo
@@ -45,6 +53,7 @@ if __name__ == "__main__":
         SystemMessage(content=prompt)
     ]
 
+    reunion = {}
 
     while True:
         print()
@@ -54,7 +63,7 @@ if __name__ == "__main__":
             break
 
         if question == "AGENDAR":
-            agendar()
+            agendar(reunion)
         else:
             # Generate answer
             response = chain({"question": question, "chat_history": chat_history})
@@ -71,3 +80,18 @@ if __name__ == "__main__":
             #     print(f"Page: {document.metadata['page_number']}")
                 # print(f"Text chunk: {document.page_content[:160]}...\n")
             print(f"Answer: {answer}")
+
+    reunion["chat"] = messages_to_dict(chat_history)
+
+    URL =  os.getenv("URL")
+
+    # print(URL)
+
+    # print(dicts)    
+
+    # print("\n\n\n\n\n\n")    
+
+    # print(messages_from_dict(dicts))    
+
+    res = requests.post(f"http://{URL}:5000", json=json.dumps(reunion)) 
+
