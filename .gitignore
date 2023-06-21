@@ -1,0 +1,6 @@
+.env
+venv
+.DS_Store
+src/data/chroma
+src/data/pdfs
+src/data/pdfs2

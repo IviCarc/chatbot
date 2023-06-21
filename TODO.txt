@@ -1,0 +1,4 @@
+Leer más de un PDF. ✔️
+Prompt personalizado. ✔️
+Optimizar carga de los documentos.
+Integrar chat con Wsp o página web. Hacer una API.
