@@ -39,7 +39,8 @@ def make_chain():
 if __name__ == "__main__":
     load_dotenv("../../")
 
-    
+    URL =  os.getenv("URL")
+    print(requests.get(f"http://{URL}:80"))
 
     with open('prompt2.txt', 'r', encoding='utf-8') as file:
         # Lee todo el contenido del archivo
@@ -83,7 +84,7 @@ if __name__ == "__main__":
 
     reunion["chat"] = messages_to_dict(chat_history)
 
-    URL =  os.getenv("URL")
+    
 
     # print(URL)
 
@@ -91,7 +92,8 @@ if __name__ == "__main__":
 
     # print("\n\n\n\n\n\n")    
 
-    # print(messages_from_dict(dicts))    
+    # print(messages_from_dict(dicts))   
+    print(URL) 
 
     res = requests.post(f"http://{URL}:5000", json=json.dumps(reunion)) 
 

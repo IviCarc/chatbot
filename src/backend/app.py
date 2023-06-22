@@ -4,6 +4,7 @@ app=Flask(__name__)
 
 @app.route('/')
 def index():
+    print("HOLA")
     return "TEST 3"
     # return render_template('index.html')
 
@@ -12,4 +13,4 @@ def agenda():
     print("test2")
     return {'success': True}
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(host="0.0.0.0", debug=True, port=5000)
