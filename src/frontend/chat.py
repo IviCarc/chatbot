@@ -39,8 +39,10 @@ def make_chain():
 if __name__ == "__main__":
     load_dotenv("../../")
 
+
     URL =  os.getenv("URL")
-    print(requests.get(f"http://{URL}:80"))
+
+    res = requests.get(f"http://{URL}:5000/") 
 
     with open('prompt2.txt', 'r', encoding='utf-8') as file:
         # Lee todo el contenido del archivo
