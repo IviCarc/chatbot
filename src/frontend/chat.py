@@ -9,14 +9,16 @@ from langchain.schema import messages_from_dict, messages_to_dict
 
 from agendar import agendar
 
+
 import requests
 import os
 import json
 
+
 def make_chain():
     model = ChatOpenAI(
         model_name="gpt-3.5-turbo",
-        temperature="0",
+        temperature="1",
         # verbose=True
     )
 
