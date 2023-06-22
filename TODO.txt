@@ -1,4 +1,21 @@
-Leer más de un PDF. ✔️
-Prompt personalizado. ✔️
-Optimizar carga de los documentos.
-Integrar chat con Wsp o página web. Hacer una API.
+BOT:
+    Leer más de un PDF. ✔️
+    Prompt personalizado. ✔️
+    Optimizar carga de los documentos.
+    Mejores respuestas.
+    Mensajes de bienvenida.
+    Indicaciones claras sobre funcionamiento.
+
+FRONTEND.:
+    Enviar mensajes.
+    Enviar POST a la API para agendar la reunión.
+
+Utilizar un calendario para agendar reuniones en fechas disponibles.
+
+API:
+    GET => Envía las reuniones a concretar.
+    GET => Envía días disponibles.
+    POST => agende la reunión.
+    DELETE => Eliminar reuniones.
+    PUT => Editar fecha de las reuniones
+    [OPCIONAL] POST >= Cargar archivos PDF para entrenar al bot.
