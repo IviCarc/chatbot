@@ -13,6 +13,9 @@ openai = "*"
 tiktoken = "*"
 flask = "*"
 requests = "*"
+mysql = "*"
+mysql-connector-python-rf = "*"
+mysql-connector-python = "*"
 
 [dev-packages]
 

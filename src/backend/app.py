@@ -1,17 +1,14 @@
 from flask import Flask, render_template
 
+from controllers import getAllReuniones,getReunionById, agendarReunion, editarReunion, eliminarReunion
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    print("HOLA")
-    return "TEST 3"
-    # return render_template('index.html')
-
-@app.route("/post", methods = ["POST"])
-def agenda():
-    print("test2")
-    return {'success': True}
+# API
+app.add_url_rule('/', 'getAllReuniones',getAllReuniones, methods=["GET"])
+app.add_url_rule('/reunion', 'getReunionById',getReunionById, methods=["GET"])
+app.add_url_rule('/', 'agendarReunion',agendarReunion, methods=["POST"])
+app.add_url_rule('/', 'editarReunion',editarReunion, methods=["PUT"])
+app.add_url_rule('/', 'eliminarReunion',eliminarReunion, methods=["DELETE"])
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True, port=5000)

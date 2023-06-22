@@ -13,7 +13,9 @@ FRONTEND.:
 Utilizar un calendario para agendar reuniones en fechas disponibles.
 
 API:
-    GET => Envía las reuniones a concretar.
+    GET => Envía las reuniones programadas. ✔️
+    GET => Envía una reunion por ID. (devuelve un array en vez de un solo obj) ✔️
+    GET => Envía las reuniones de un cliente
     GET => Envía días disponibles.
     POST => agende la reunión.
     DELETE => Eliminar reuniones.
