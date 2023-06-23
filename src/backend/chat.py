@@ -5,6 +5,7 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.schema import HumanMessage, AIMessage, SystemMessage
 from dotenv import load_dotenv
 
+
 from langchain.schema import messages_from_dict, messages_to_dict
 
 from agendar import agendar
@@ -37,21 +38,20 @@ def make_chain():
         # verbose=True,
     )
 
-
-if __name__ == "__main__":
+def chat(question):
     load_dotenv("../../")
 
 
     URL =  os.getenv("URL")
 
-    res = requests.get(f"http://{URL}:5000/") 
+    # res = requests.get(f"http://{URL}:5000/") 
 
     with open('prompt2.txt', 'r', encoding='utf-8') as file:
         # Lee todo el contenido del archivo
         prompt = file.read()
 
     # Imprime el contenido del archivo
-    print(prompt)
+    # print(prompt)
 
     chain = make_chain()
     chat_history = [
@@ -60,44 +60,44 @@ if __name__ == "__main__":
 
     reunion = {}
 
-    while True:
-        print()
-        question = input("Question: ")
+        
+    # question = message
 
-        if question == "q":
-            break
+    # if question == "q":
 
-        if question == "AGENDAR":
-            agendar(reunion)
-        else:
-            # Generate answer
+    if question == "AGENDAR":
+        agendar(reunion)
+
+    else:
+        # Generate answer
             response = chain({"question": question, "chat_history": chat_history})
 
             # Retrieve answer
             answer = response["answer"]
-            source = response["source_documents"]
+            # source = response["source_documents"]
             chat_history.append(HumanMessage(content=question))
             chat_history.append(AIMessage(content=answer))
 
             # Display answer
-            print("\n\nSources:\n")
+        # print("\n\nSources:\n")
             # for document in source:
             #     print(f"Page: {document.metadata['page_number']}")
                 # print(f"Text chunk: {document.page_content[:160]}...\n")
-            print(f"Answer: {answer}")
+        # print(f"Answer: {answer}")
 
     reunion["chat"] = messages_to_dict(chat_history)
 
+    return response
+    
     
 
     # print(URL)
 
     # print(dicts)    
 
-    # print("\n\n\n\n\n\n")    
 
     # print(messages_from_dict(dicts))   
-    print(URL) 
+    # print(URL) 
 
-    res = requests.post(f"http://{URL}:5000", json=json.dumps(reunion)) 
-
+    # res = requests.post(f"http://{URL}:5000", json=json.dumps(reunion)) 
+  
