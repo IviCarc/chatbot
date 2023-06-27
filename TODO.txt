@@ -21,9 +21,10 @@ API:
     DELETE => Eliminar reuniones.
     PUT => Editar fecha de las reuniones
     [OPCIONAL] POST >= Cargar archivos PDF para entrenar al bot.
+    AGREGAR ORM
 
 
 27/06/23
-    Si el usuario escribe "AGENDAR", popea un form (nombre, telefono, correo, calendario (fecha))
+    Si el usuario escribe "AGENDAR", popea un form (nombre, telefono, correo, calendario (fecha), hora)
     Conectar el form con la DB
     Chatear con el bot desde la pagina

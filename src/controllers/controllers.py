@@ -78,31 +78,33 @@ def guardarAnfitrion(anfitrion, correo, cursor):
     return cursor.lastrowid
 
 def agendarReunion():
-    req = request.get_json()
-    cliente, correoCliente, anfitrion, correoAnfitrion, chat, fecha, hora = req.values()
+    # req = request.get_json()
+    print(request.form)
+    form = request.form
+    # nombre, correoCliente, anfitrion, correoAnfitrion, chat, fechaHora = request.form
 
-    fecha = datetime.strptime(fecha, '%Y-%m-%d').date()
-    hora = datetime.strptime(hora, '%H:%M:%S').time()
+    # fecha = datetime.strptime(request.form[], '%Y-%m-%d').date()
+    # hora = datetime.strptime(hora, '%H:%M:%S').time()
 
     cursor = db.database.cursor()   
     # Chequear si el cliente existe
-    cursor.execute("SELECT ID FROM clientes WHERE nombre = %s", [cliente])
+    cursor.execute("SELECT ID FROM clientes WHERE nombre = %s", [form["nombre"]])
     ID_cliente = cursor.fetchone()[0]
 
     if (ID_cliente == None):
-        ID_cliente = guardarCliente(cliente, correoCliente, cursor)
+        ID_cliente = guardarCliente(form["nombre"], form["correoCliente"], cursor)
 
     # Chequear si el anfitrion existe
-    cursor.execute("SELECT ID FROM anfitriones WHERE nombre = %s", [anfitrion])
+    cursor.execute("SELECT ID FROM anfitriones WHERE nombre = %s", [form["anfitrion"]])
     ID_anfitrion = cursor.fetchone()[0]
 
     if (ID_anfitrion == None):
-        ID_anfitrion = guardarAnfitrion(anfitrion, correoAnfitrion, cursor)
+        ID_anfitrion = guardarAnfitrion(form["anfitrion"], form["correoAnfitrion"], cursor)
 
     #Insertar la reunión
-    cursor.execute("INSERT INTO reuniones (chat, fecha, hora, ID_cliente, ID_anfitrion) VALUES (%s, %s, %s, %s, %s)", (chat, fecha, hora, ID_cliente, ID_anfitrion))
+    cursor.execute("INSERT INTO reuniones (chat, fechaHora, ID_cliente, ID_anfitrion) VALUES (%s, %s, %s, %s)", (form["chat"], form["fechaHora"], ID_cliente, ID_anfitrion))
     db.database.commit()
-    return req
+    return form
 
 def editarReunion():
     return "REUNION EDITADA"

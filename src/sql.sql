@@ -22,8 +22,7 @@ CREATE TABLE Anfitriones (
 CREATE TABLE Reuniones (
 	ID INT UNIQUE NOT NULL AUTO_INCREMENT,
     chat VARCHAR(255) NOT NULL,
-    fecha DATE NOT NULL,
-    hora TIME NOT NULL,
+    fechaHora DATETIME NOT NULL,
     ID_cliente INT NOT NULL,
     ID_anfitrion INT NOT NULL,
     PRIMARY KEY (ID),
@@ -31,8 +30,8 @@ CREATE TABLE Reuniones (
     FOREIGN KEY (ID_anfitrion) REFERENCES Anfitriones(ID)
 );
 
-ALTER TABLE  `Reuniones` ADD UNIQUE (`fecha` ,`hora`, `ID_anfitrion`);
-ALTER TABLE  `Reuniones` ADD UNIQUE (`fecha` ,`hora`, `ID_cliente`);
+ALTER TABLE  `Reuniones` ADD UNIQUE (`fechaHora`, `ID_anfitrion`);
+ALTER TABLE  `Reuniones` ADD UNIQUE (`fechaHora`, `ID_cliente`);
 
 INSERT INTO Clientes (nombre, correo) VALUES ("Benito", "beni@gmail.com");
 INSERT INTO Clientes (nombre, correo) VALUES ("Ivan", "ivan@gmail.com");
@@ -40,5 +39,5 @@ INSERT INTO Clientes (nombre, correo) VALUES ("Ivan", "ivan@gmail.com");
 INSERT INTO Anfitriones (nombre, correo) VALUES ("Pelo", "pelo@gmail.com");
 INSERT INTO Anfitriones (nombre, correo) VALUES ("Agus", "agus@gmail.com");
 
-INSERT INTO Reuniones (chat, fecha, hora, ID_cliente, ID_anfitrion) VALUES ("queonda", "2022-06-16", "16:00:00", 1, 1);
-INSERT INTO Reuniones (chat, fecha, hora, ID_cliente, ID_anfitrion) VALUES ("queonda", "2022-06-16", "16:30:00", 2, 1);
+INSERT INTO Reuniones (chat, fechaHora, ID_cliente, ID_anfitrion) VALUES ("queonda", "2022-06-16 16:00:00", 1, 1);
+INSERT INTO Reuniones (chat, fechaHora, ID_cliente, ID_anfitrion) VALUES ("queonda", "2022-06-16 16:30:00", 2, 1);
