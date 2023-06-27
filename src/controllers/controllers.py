@@ -89,20 +89,22 @@ def agendarReunion():
     cursor = db.database.cursor()   
     # Chequear si el cliente existe
     cursor.execute("SELECT ID FROM clientes WHERE nombre = %s", [form["nombre"]])
-    ID_cliente = cursor.fetchone()[0]
-
-    if (ID_cliente == None):
+    ID_cliente = None
+    try:
+        ID_cliente = cursor.fetchone()[0]
+    except:
         ID_cliente = guardarCliente(form["nombre"], form["correoCliente"], cursor)
+    # if (ID_cliente == None):
 
     # Chequear si el anfitrion existe
-    cursor.execute("SELECT ID FROM anfitriones WHERE nombre = %s", [form["anfitrion"]])
+    cursor.execute("SELECT ID FROM anfitriones WHERE nombre = %s", ["pelo"])
     ID_anfitrion = cursor.fetchone()[0]
 
     if (ID_anfitrion == None):
-        ID_anfitrion = guardarAnfitrion(form["anfitrion"], form["correoAnfitrion"], cursor)
+        ID_anfitrion = guardarAnfitrion("pelo", "pelo@gmail.com", cursor)
 
     #Insertar la reunión
-    cursor.execute("INSERT INTO reuniones (chat, fechaHora, ID_cliente, ID_anfitrion) VALUES (%s, %s, %s, %s)", (form["chat"], form["fechaHora"], ID_cliente, ID_anfitrion))
+    cursor.execute("INSERT INTO reuniones (chat, fechaHora, ID_cliente, ID_anfitrion) VALUES (%s, %s, %s, %s)", ("adad", form["fechaHora"], ID_cliente, ID_anfitrion))
     db.database.commit()
     return form
 
