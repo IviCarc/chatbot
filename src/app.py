@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask
 from chat import chat
 
 from controllers.controllers import getAllReuniones,getReunionById, getReunionsByCliente, agendarReunion, editarReunion, eliminarReunion

@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
       userMessage.textContent = message;
       chatBody.appendChild(userMessage);
     }
-  
+
+    
     function addBotMessage(message) {
       const botMessage = document.createElement('div');
       botMessage.classList.add('message', 'bot-message');
@@ -35,6 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (message === '') {
         return; // Evita enviar una solicitud vacía
       }
+
+      if (message === "AGENDAR"){
+          formulario.style.display = "block";
+      }
   
       addUserMessage(message);  
       userInput.value = '';
@@ -42,19 +47,19 @@ document.addEventListener('DOMContentLoaded', () => {
       // Envía el mensaje al servidor Flask utilizando AJAX
       const formData = new FormData();
       formData.append('userInput', message);
-  
-      fetch('/process', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        const botMessage = data.botMessage;
-        addBotMessage(botMessage);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+      
+      // fetch('/process', {
+      //   method: 'POST',
+      //   body: formData
+      // })
+      // .then(response => response.json())
+      // .then(data => {
+      //   const botMessage = data.botMessage;
+      //   addBotMessage(botMessage);
+      // })
+      // .catch(error => {
+      //   console.error('Error:', error);
+      // });
     }
   
     userInput.addEventListener('keydown', (event) => {

@@ -8,6 +8,6 @@ database = mysql.connector.connect(
     host='localhost',
     user='root',
     password=DBPASS,
-    database='AsistenciaTecnica',
+    database='asistenciatecnica',
     auth_plugin='mysql_native_password'
 )
