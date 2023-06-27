@@ -8,9 +8,6 @@ from dotenv import load_dotenv
 
 from langchain.schema import messages_from_dict, messages_to_dict
 
-from agendar import agendar
-
-
 import requests
 import os
 import json
@@ -66,8 +63,7 @@ def chat(question):
     # if question == "q":
 
     if question == "AGENDAR":
-        agendar(reunion)
-
+        print("UIHAID")
     else:
         # Generate answer
             response = chain({"question": question, "chat_history": chat_history})

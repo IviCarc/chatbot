@@ -1,4 +1,4 @@
-from Flask import render_template, request, jsonify
+from flask import render_template, request, jsonify
 from chat import chat
 
 def bot_chat():
