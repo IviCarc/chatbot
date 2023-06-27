@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
+from chat import chat
 
 from controllers import getAllReuniones,getReunionById, getReunionsByCliente, agendarReunion, editarReunion, eliminarReunion
 from bot_chat import bot_chat, process
@@ -16,4 +17,6 @@ app.add_url_rule('/', 'editarReunion',editarReunion, methods=["PUT"])
 app.add_url_rule('/', 'eliminarReunion',eliminarReunion, methods=["DELETE"])
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", debug=True, port=5000)
+    app.run(debug=True, port=80)
+
+# app.run()
