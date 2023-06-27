@@ -25,13 +25,13 @@ def process():
 
     bot_message = response
 
-    bot_question = bot_message['choices'][0]['message']['content']
+    # bot_question = bot_message['choices'][0]['message']['content']
 
-
+    
     # response = chat(user_message)  
     # print (bot_message)
 
-    return jsonify({'userMessage': user_message, 'botMessage': bot_message,'botQuestion': bot_question})
+    return jsonify({'userMessage': user_message, 'botMessage': bot_message})
     
     
 if __name__ == '__main__':
