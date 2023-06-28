@@ -23,6 +23,8 @@ API:
     [OPCIONAL] POST >= Cargar archivos PDF para entrenar al bot.
     AGREGAR ORM
 
+    UTILIZAR BLUEPRINT
+
 
 27/06/23
     Si el usuario escribe "AGENDAR", popea un form (nombre, telefono, correo, calendario, fechahora) ✔️

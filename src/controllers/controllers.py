@@ -1,9 +1,15 @@
-from flask import request
-import db as db
+from flask import request, Blueprint
+from utils.db import db
+
+from models.anfitrion import Anfitrion 
+from models.cliente import Cliente
+from models.reunion import Reunion 
 import json
 import datetime
 
 from datetime import datetime
+
+reuniones = Blueprint("reuniones", __name__)
 
 ### METODOS GET ###
 
@@ -32,6 +38,7 @@ def getHeaders(cursor):
     row_headers=[x[0] for x in cursor.description]
     return row_headers
 
+@reuniones.route('/reuniones')
 def getAllReuniones():
     cursor = db.database.cursor()
     cursor.execute("SELECT * FROM reuniones")
@@ -41,6 +48,7 @@ def getAllReuniones():
 
     return serialize(rv, headers)
 
+@reuniones.route('/reunion')
 def getReunionById():
     cursor = db.database.cursor()
     id = request.args.get("id")
@@ -50,6 +58,7 @@ def getReunionById():
 
     return serialize(reunion, headers)
 
+@reuniones.route('/cliente')
 def getReunionsByCliente():
     cursor = db.database.cursor()
     cliente = request.args.get("cliente")
@@ -64,53 +73,45 @@ def getReunionsByCliente():
 
 ### METODOS POST ###
 
-def guardarCliente(cliente,correo, cursor):
-    print(cliente)
-    cursor.execute("INSERT INTO clientes (nombre, correo) values (%s, %s)", [cliente, correo])
-    db.database.commit()
-    print(cursor.lastrowid)
-    return cursor.lastrowid
+def guardarCliente(nombre,correo, telefono):
+    cliente = Cliente(nombre,correo, telefono)
+    db.session.add(cliente)
+    db.session.commit()
+    return cliente.id
 
-def guardarAnfitrion(anfitrion, correo, cursor):
-    cursor.execute("INSERT INTO anfitriones (nombre, correo) values (%s, %s)", [anfitrion, correo])
-    db.database.commit()
-    print(cursor.lastrowid)
-    return cursor.lastrowid
+def guardarAnfitrion(nombre, correo, telefono):
+    anfitrion = Anfitrion(nombre, correo, telefono)
+    db.session.add(anfitrion)
+    db.session.commit()
+    return anfitrion.id
 
+
+@reuniones.route('/', methods=["POST"])
 def agendarReunion():
-    # req = request.get_json()
-    print(request.form)
     form = request.form
-    # nombre, correoCliente, anfitrion, correoAnfitrion, chat, fechaHora = request.form
 
-    # fecha = datetime.strptime(request.form[], '%Y-%m-%d').date()
-    # hora = datetime.strptime(hora, '%H:%M:%S').time()
+    cliente_id = None
 
-    cursor = db.database.cursor()   
-    # Chequear si el cliente existe
-    cursor.execute("SELECT ID FROM clientes WHERE nombre = %s", [form["nombre"]])
-    ID_cliente = None
-    try:
-        ID_cliente = cursor.fetchone()[0]
-    except:
-        ID_cliente = guardarCliente(form["nombre"], form["correoCliente"], cursor)
-    # if (ID_cliente == None):
+    cliente = db.session.execute(db.select(Cliente).filter_by(nombre=form["nombre"])).fetchone()
+    
+    if cliente == None:
+        cliente_id = guardarCliente(form["nombre"], form["correo"], form["telefono"])
+    else:
+        cliente_id = cliente[0].id
 
-    # Chequear si el anfitrion existe
-    cursor.execute("SELECT ID FROM anfitriones WHERE nombre = %s", ["pelo"])
-    ID_anfitrion = cursor.fetchone()[0]
+    reunion = Reunion(form["chat"], form["fechaHora"], cliente_id, 1)
 
-    if (ID_anfitrion == None):
-        ID_anfitrion = guardarAnfitrion("pelo", "pelo@gmail.com", cursor)
+    db.session.add(reunion)
+    db.session.commit()
 
-    #Insertar la reunión
-    cursor.execute("INSERT INTO reuniones (chat, fechaHora, ID_cliente, ID_anfitrion) VALUES (%s, %s, %s, %s)", ("adad", form["fechaHora"], ID_cliente, ID_anfitrion))
-    db.database.commit()
     return form
 
+
+@reuniones.route('/', methods=["PUT"])
 def editarReunion():
     return "REUNION EDITADA"
 
+@reuniones.route('/', methods=["DELETE"])
 def eliminarReunion():
     cursor = db.database.cursor()
     id = request.args.get("id")
