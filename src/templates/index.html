@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Chatbot</title>
+  
   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
   <script src="{{ url_for('static',filename='styles/main.js') }}"> </script>
   
@@ -16,26 +17,32 @@
       <!--  mensajes del bot  -->
     </div>
  
-    <div id="formulario" style="display: none;">
-      <h2>Formulario de Agenda</h2>
-      <form action="/" method="post">
+    <div class="box-chat" id="formulario" style="display: none;">
+
+      <!-- <h5 class="title-chat">REGISTRAR REUNION</h5> -->
+
+      <form class="form" action="/" method="post">
+
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre"><br><br>
+        <input type="text" class="chat-user" id="nombre" name="nombre"><br>
 
         <label for="fecha">Fecha:</label>
-        <input type="datetime-local" id="fechaHora" name="fechaHora" min="2023-06-07T00:00" max="2023-06-14T00:00"><br><br>
+        <input type="datetime-local" class="chat-fechahora" id="fechaHora" name="fechaHora" min="2023-06-07T00:00" max="2023-06-14T00:00"><br>
 
         <!-- <label for="hora">Hora:</label> -->
+        <label for="nombre">Correo:</label>
+        <input type="email" class="chat-correo" id="correoCliente" name="correoCliente"><br>
 
-        <input type="email" id="correoCliente" name="correoCliente"><br><br>
-        <input type="number" id="telefono" name="telefono"><br><br>
+        <label for="nombre">Teléfono:</label>
+        <input type="text" class="chat-telefono" id="telefono" name="telefono"><br><br>
 
-        <button type="submit">Agendar</button>
+        <button class="boton" type="submit">Enviar</button>
 
       </form>
+
     </div> 
 
-    <input type="text" class="chat-input" id="user-input" name="userInput" placeholder="Escribe un mensaje..." autofocus>
+    <input style="display: block;" type="text" class="chat-input" id="user-input" name="userInput" placeholder="Escribe un mensaje..." autofocus >
     
   </div>
 

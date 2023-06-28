@@ -9,6 +9,7 @@ function mostrarFormulario() {
 // Función para ocultar el formulario
 function ocultarFormulario() {
   formulario.style.display = "none";
+  document.getElementById("myDIV").style.display = "block";
 }
 
 // Escucha el evento de envío del formulario

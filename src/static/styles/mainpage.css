@@ -1,5 +1,6 @@
 /* Estilos para la interfaz del chat */
 .chat-container {
+    position: relative;
     max-width: 400px;
     margin: 0 auto;
     border: 1px solid #ccc;
@@ -15,7 +16,7 @@
 }
 
 .chat-body {
-    height: 300px;
+    height: 400px;
     overflow-y: scroll;
     padding: 10px;
 }
@@ -44,3 +45,100 @@
     border-top: none;
     border-radius: 0 0 5px 5px;
 }
+
+.box-chat{
+    top: 0;
+    left: 1em;
+    height: auto;
+    position: absolute;
+    background-color: gray;
+    border-radius:  15px 15px;
+    /* padding-bottom: 10px; */
+    padding-top: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-left: 20px;
+    margin-top: 45px;
+    /* margin-bottom: 15px; */
+
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: animacion 0.5s ease-in-out forwards;
+
+}
+
+@keyframes animacion {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+/* 
+    50% {
+        opacity: 0.75;
+        transform: translateY(-15px);
+    } */
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+
+
+.title-chat{
+    font-size: 16px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.form{
+    display: flex;
+    /* background-color: red; */
+    flex-direction: column; 
+    /* border-radius:  15px 15px; */
+    /* justify-content: center; */
+    align-items: center; 
+ } 
+  
+.form label {
+    font-family: sans-serif;
+    font-size: 0.875rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+  
+
+.form input[type="text"],
+.form input[type="datetime-local"],
+.form input[type="email"],
+.form input[type="number"] {
+    width: 200px;
+    padding: 10px;
+    /* margin-bottom: 15px; */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 12px;
+}
+  
+.boton {
+    width: 150px;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+  
+.boton:hover {
+    background-color: #0056b3;
+}
+

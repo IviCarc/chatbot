@@ -38,8 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (message === "AGENDAR"){
-          formulario.style.display = "block";
+        formulario.style.display = "block";
+        document.getElementById("user-input").style.display = "none";
       }
+    
   
       addUserMessage(message);  
       userInput.value = '';
