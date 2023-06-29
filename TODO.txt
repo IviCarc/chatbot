@@ -9,6 +9,7 @@ BOT:
 FRONTEND.:
     Enviar mensajes.
     Enviar POST a la API para agendar la reunión. ✔️
+    Funcionalidad CRUD
 
 Utilizar un calendario para agendar reuniones en fechas disponibles.
 
@@ -25,13 +26,19 @@ API:
 
     UTILIZAR BLUEPRINT ✔️
 
+    Enviar un mail al anfitrion para avisarle de la reunión
+
 
 27/06/23
     Si el usuario escribe "AGENDAR", popea un form (nombre, telefono, correo, calendario, fechahora) ✔️
     Conectar el form con la DB ✔️
-    Chatear con el bot desde la pagina
 
 28/06/23
     Estilos al FORM ✔️
-    Google calendar
     ORM (SQLAlchemy) ✔️
+    Google calendar
+
+29/06/23
+    Input calendario, restringir: No poder seleccionar fechas anterior al día actual y entre X e Y hs
+    Elegir un anfitrion de manera random, sin importar disponibilidad (temporal)
+    Frontend CRUD
