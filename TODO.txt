@@ -19,11 +19,11 @@ API:
     GET => Envía días disponibles.
     POST => agende la reunión. ✔️
     DELETE => Eliminar reuniones. ✔️
-    PUT => Editar fecha de las reuniones
+    PUT => Editar fecha de las reuniones ✔️
     [OPCIONAL] POST >= Cargar archivos PDF para entrenar al bot.
-    AGREGAR ORM
+    AGREGAR ORM ✔️
 
-    UTILIZAR BLUEPRINT
+    UTILIZAR BLUEPRINT ✔️
 
 
 27/06/23
@@ -32,6 +32,6 @@ API:
     Chatear con el bot desde la pagina
 
 28/06/23
-    Estilos al FORM
+    Estilos al FORM ✔️
     Google calendar
-    ORM (SQLAlchemy)
+    ORM (SQLAlchemy) ✔️
