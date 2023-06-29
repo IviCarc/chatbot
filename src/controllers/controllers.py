@@ -1,4 +1,4 @@
-from flask import request, Blueprint, jsonify
+from flask import request, Blueprint, jsonify, render_template
 from utils.db import db
 
 from models.anfitrion import Anfitrion 
@@ -11,8 +11,9 @@ reuniones = Blueprint("reuniones", __name__)
 
 @reuniones.route('/reuniones')
 def getAllReuniones():
-    reuniones = db.session.execute(db.select(Reunion)).scalars()
-    return jsonify(Reunion.serialize_list(reuniones))
+    # reuniones = db.session.execute(db.select(Reunion)).scalars()
+    reuniones = Reunion.query.all()
+    return render_template('layout.html', reuniones=reuniones)
 
 @reuniones.route('/reunion/<int:id>')
 def getReunionById(id):
