@@ -18,6 +18,7 @@ mysql-connector-python-rf = "*"
 mysql-connector-python = "*"
 sqlalchemy = "*"
 flask-sqlalchemy = "*"
+flask-cors = "*"
 
 [dev-packages]
 

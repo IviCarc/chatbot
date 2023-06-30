@@ -5,13 +5,13 @@ from controllers.controllers import reuniones
 from controllers.chat_controllers import bot_chat, process, bot
 
 from utils.db import db
-
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import os
 
 app = Flask(__name__)
-
+CORS(app)
 # Configuracion de flash_sqlalchemy
 load_dotenv("./")
 SQLALCHEMY_DATABASE_URI =  os.getenv("SQLALCHEMY_DATABASE_URI")

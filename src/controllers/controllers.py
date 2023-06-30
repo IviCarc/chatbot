@@ -1,4 +1,4 @@
-from flask import request, Blueprint, jsonify, render_template
+from flask import request, Blueprint, jsonify, render_template, redirect, url_for
 from utils.db import db
 
 from models.anfitrion import Anfitrion 
@@ -80,7 +80,9 @@ def editarReunion(id):
 
 @reuniones.route('/<int:id>', methods=["DELETE"])
 def eliminarReunion(id):
+    print(id)
     reunion = Reunion.query.get(id)
     db.session.delete(reunion)
     db.session.commit()
-    return jsonify(Reunion.serialize(reunion))
+    # return jsonify(Reunion.serialize(reunion))
+    return redirect(url_for('reuniones.getAllReuniones'))
