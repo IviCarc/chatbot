@@ -6,6 +6,9 @@ function mostrarFormulario() {
   formulario.style.display = "block";
 }
 
+// var fechaHoraInput = document.getElementById('fechaHora');
+
+
 // Función para ocultar el formulario
 function ocultarFormulario() {
   formulario.style.display = "none";
