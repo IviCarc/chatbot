@@ -9,9 +9,8 @@ BOT:
 FRONTEND.:
     Enviar mensajes.
     Enviar POST a la API para agendar la reunión. ✔️
-    Funcionalidad CRUD
-
-Utilizar un calendario para agendar reuniones en fechas disponibles.
+    Funcionalidad CRUD ✔️
+    Utilizar un calendario para agendar reuniones en fechas disponibles. (no fechas disponibles) ✔️
 
 API:
     GET => Envía las reuniones programadas. ✔️
@@ -39,6 +38,6 @@ API:
     Google calendar
 
 29/06/23
-    Input calendario, restringir: No poder seleccionar fechas anterior al día actual y entre X e Y hs
+    Input calendario, restringir: No poder seleccionar fechas anterior al día actual y entre X e Y hs ✔️
     Elegir un anfitrion de manera random, sin importar disponibilidad (temporal)
-    Frontend CRUD
+    Frontend CRUD ✔️
