@@ -1,100 +1,97 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8">
-  <meta name="viewport">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Chatbot</title>
-  
-  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
-  <script src="{{ url_for('static',filename='styles/main.js') }}"> </script>
-<!-- 
-  <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet"/>
-  <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css" rel="stylesheet"/>
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script> -->
+  <!-- CSS de Bootstrap -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
 
-  
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/mainpage.css') }}">
+
 </head>
+
 <body>
-  <div class="chat-container">
-
-    <div class="chat-header">Chatbot</div>
-
-    <div class="chat-body" id="chat-body">
-      <!-- <p> {{ botQuestion }} </p> -->
-      <!--  mensajes del bot  -->
+  <div class="containerV1">
+    <div class="center-container">
+      <button class="botonmostrar" id="mostrarBoton" style="display: block;">Mostrar Chatbot</button>
     </div>
- 
-    <div class="box-chat" id="formulario" style="display: none;">
-      <!-- <div class="container">
-            <div class="row">
-              <div class='col-sm-6'>
-                <div class="form-group">
-    
-                  <label for="formGroupExampleInput" class="form-label">Fecha</label>
-                  
-                  <div style="width: 30%" class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Nombre</label>
-                    <input  style="width: 40%;" type="text" class="form-control" id="formGroupExampleInput" placeholder="test">
-                  </div> 
-    
-    
-                  <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Correo</label>
-                    <input  style="width: 40%;" type="text" class="form-control" id="formGroupExampleInput" placeholder="test">
-                  </div> 
-    
-                  <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Teléfono</label>
-                    <input  style="width: 40%;" type="text" class="form-control" id="formGroupExampleInput" placeholder="test">
-                  </div> 
-    
-                </div>
-              </div>
-            </div>
-            </div> -->
-
-      <!-- <h5 class="title-chat">REGISTRAR REUNION</h5> -->
-    
-      <form class="form" action="/" method="post">
-
-        <label for="nombre">Nombre:</label>
-        <input type="text" class="chat-user" id="nombre" name="nombre"><br>
-
-        <label for="fecha">Fecha:</label>
-        <input type="datetime-local" class="chat-fechahora" id="fechaHora" name="fechaHora" min="" max="" value=""><br>
-
-        <label for="nombre">Correo:</label>
-        <input type="email" class="chat-correo" id="correoCliente" name="correoCliente"><br>
-
-        <label for="nombre">Teléfono:</label>
-        <input type="text" class="chat-telefono" id="telefono" name="telefono"><br><br>
-
-        <button class="boton">Enviar</button>
-
-      </form>
-
-      </form>
-    
-    </div>
-
-    <input style="display: block;" type="text" class="chat-input" id="user-input" name="userInput" placeholder="Escribe un mensaje..." autofocus >
-    
   </div>
 
-  <script src="{{ url_for('static',filename='styles/bot.js') }}"></script>
+  <div class="chatbot-container" id="chatbotContainer" style="display: none;">
+
+    <!-- Todo el contenido HTML de tu chatbot aquí -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mx-auto">
+
+          <di v class="chat-container">
+            <div class="chat-header">
+              <h1 class="chat-title">Chatbot</h1>
+              <h2 class="chat-subtitle">Laboratorio Consultar SRL</h2>
+            </div>
+            <div class="chat-body" id="chat-body">
+              <!-- mensajes del bot -->
+            </div>
+
+            <div class="box-chat" id="formulario" style="display: none;">
+              <form class="form" action="/" method="post">
+                <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre:</label>
+                  <input type="text" class="form-control" id="nombre" name="nombre">
+                </div>
+                <div class="mb-3">
+                  <label for="fechaHora" class="form-label">Fecha:</label>
+                  <input type="datetime-local" class="form-control" id="fechaHora" name="fechaHora" min="" max=""
+                    value="">
+                </div>
+                <div class="mb-3">
+                  <label for="correoCliente" class="form-label">Correo:</label>
+                  <input type="email" class="form-control" id="correoCliente" name="correoCliente">
+                </div>
+                <div class="mb-3">
+                  <label for="telefono" class="form-label">Teléfono:</label>
+                  <input type="text" class="form-control" id="telefono" name="telefono">
+                </div>
+                <button class="boton">Enviar</button>
+
+              </form>
+            </div>
+
+            <input style="display: block;" type="text" class="form-control chat-input" id="user-input" name="userInput"
+              placeholder="Escribe un mensaje..." autofocus>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <!-- JavaScript de Bootstrap y jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Scripts personalizados -->
+  <script src="{{ url_for('static', filename='styles/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='styles/bot.js') }}"></script>
 
   <script>
+    const mostrarBoton = document.getElementById("mostrarBoton");
+    const chatbotContainer = document.getElementById("chatbotContainer");
+
+    mostrarBoton.addEventListener("click", function () {
+      chatbotContainer.style.display = "block";
+      mostrarBoton.style.display = 'none';
+    });
+
     var fechaHoraInput = document.getElementById('fechaHora');
 
     function actualizarLimites() {
@@ -108,42 +105,9 @@
 
     actualizarLimites(); // Llamar a la función por primera vez
 
-    //Actualizar los límites cada vez que pasa un día(cada 24 horas)
+    // Actualizar los límites cada vez que pasa un día (cada 24 horas)
     setInterval(actualizarLimites, 24 * 60 * 60 * 1000);
-
-
-    // PARA CERRAR EL CALENDARIO CUNADO ELEGIS EL DIA
-
-    // var fechaHoraInput = document.getElementById('fechaHora');
-
-    // function actualizarLimites() {
-    //   var hoy = new Date();
-    //   var minDate = hoy.toISOString().slice(0, 16);
-    //   var maxDate = new Date(hoy.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16);
-
-    //   fechaHoraInput.setAttribute('min', minDate);
-    //   fechaHoraInput.setAttribute('max', maxDate);
-    // }
-
-    // fechaHoraInput.addEventListener('input', function() {
-    //   this.blur();
-    // });
-
-    // actualizarLimites(); // Llamar a la función por primera vez
-
-    // // Actualizar los límites cada vez que pasa un día (cada 24 horas)
-    // setInterval(actualizarLimites, 24 * 60 * 60 * 1000);
-
   </script>
-
-  <!-- <script src="bot.js"></script> -->
-
-  <!-- <script type="text/javascript">
-    $(function () {
-        $('#datetimepicker1').datetimepicker();
-      
-    });
-</script> -->
 
 </body>
 

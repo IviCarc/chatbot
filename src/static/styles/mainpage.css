@@ -1,24 +1,120 @@
 /* Estilos para la interfaz del chat */
+body, html {
+    height: 100%;
+}
+
+.containerV1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.center-container {
+    text-align: center;
+} 
+  
+
+.botonmostrar{
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.chatbot-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* Ajusta el ancho según tus necesidades */
+    max-width: 800px; /* Limita el ancho máximo según tus necesidades */
+
+    animation-name: aparecer;
+    animation-duration: 0.5s;
+}
+
+ @keyframes aparecer {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+}
+
 .chat-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
     position: relative;
     max-width: 400px;
     margin: 0 auto;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 2px solid #000000;
+    border-radius: 7px;
     overflow: hidden;
+
+    box-shadow: 5px 6px 19px 1px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 5px 6px 19px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 6px 19px 1px rgba(0,0,0,0.75);
   }
 
 .chat-header {
-    background-color: #f2f2f2;
+    background-color: #FFFFFF;
     padding: 10px;
     text-align: center;
     font-weight: bold;
+    text-shadow: -1px 4px 5px rgba(0,0,0,0.39);
+    border-bottom: 1px solid black;
 }
 
+.chat-title {
+    font-size: 24px; /* Tamaño de fuente del título */
+    margin: 0; /* Eliminar el margen superior e inferior */
+}
+
+.chat-subtitle {
+    font-size: 16px; /* Tamaño de fuente del subtítulo */
+    margin: 0; /* Eliminar el margen superior e inferior */
+}
+
+
 .chat-body {
-    height: 400px;
-    overflow-y: scroll;
+    height: 490px;
+    /* overflow-y: scroll; */
     padding: 10px;
+    overflow-y: scroll;
+    padding-right: 16px;
+}
+
+
+.chat-body::-webkit-scrollbar {
+  width: 6px; /* Ancho de la barra de desplazamiento */
+}
+
+/* Fondo de la barra de desplazamiento */
+.chat-body::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+
+
+.chat-body::-webkit-scrollbar-thumb {
+  background-color: #000; /* Color del pulgar negro */
+  margin-left: 5px;
+  border-radius: 8px; 
+}
+
+
+.chat-body::-webkit-scrollbar-thumb:hover {
+  background-color: #888; /* Color del pulgar gris oscuro al pasar el mouse */
 }
 
 .message {
@@ -26,10 +122,16 @@
 }
 
 .user-message {
-    background-color: #dcf8c6;
+    background-color: black;
     padding: 8px;
     border-radius: 5px;
     text-align: right;
+    color: white;
+
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: 0;
+    
 }
 
 .bot-message {
@@ -41,9 +143,9 @@
 .chat-input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-top: none;
-    border-radius: 0 0 5px 5px;
+    border: 1px solid black;
+    border-top: 2px solid black; 
+    border-radius: 4.5px;  
 }
 
 .box-chat{
@@ -51,21 +153,27 @@
     left: 1em;
     height: auto;
     position: absolute;
-    background-color: gray;
-    border-radius:  15px 15px;
+    border: 6px double black;
+    background-color: white;
+    border-radius:  50px 15px;
     /* padding-bottom: 10px; */
     padding-top: 15px;
     padding-left: 50px;
     padding-right: 50px;
     margin-left: 20px;
-    margin-top: 45px;
+    margin-top: 50px;
     /* margin-bottom: 15px; */
+
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 
     opacity: 0;
     transform: translateY(-20px);
     animation: animacion 0.5s ease-in-out forwards;
-
 }
+
+
 
 @keyframes animacion {
     0% {
@@ -127,8 +235,9 @@
 }
   
 .boton {
-    width: 150px;
+    width: 100px;
     padding: 10px;
+    padding-bottom: 10px;
     margin-bottom: 15px;
     background-color: #007bff;
     color: #fff;
