@@ -16,20 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
       botMessage.textContent = message;
       chatBody.appendChild(botMessage);
     }
-
-
-    // function addBotMessage(message) {
-    //   var chatMessages = document.getElementById('chat-messages');
-    //   var botQuestion = message.botQuestion;
-      
-    //   // Crear un elemento de mensaje y agregar el contenido
-    //   var messageElement = document.createElement('div');
-    //   messageElement.classList.add('message');
-    //   messageElement.innerHTML = '<p>Pregunta del bot: ' + botQuestion + '</p>';
-      
-    //   // Agregar el mensaje al contenedor
-    //   chatMessages.appendChild(messageElement);
-    // }
   
     function processUserInput() {
       const message = userInput.value.trim();

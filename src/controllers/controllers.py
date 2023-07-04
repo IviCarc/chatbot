@@ -1,4 +1,4 @@
-from flask import request, Blueprint, jsonify, render_template, redirect, url_for
+from flask import request, Blueprint, jsonify, render_template, redirect, url_for, jsonify
 from utils.db import db
 
 from models.anfitrion import Anfitrion 
@@ -67,16 +67,24 @@ def agendarReunion():
 
     return jsonify(Reunion.serialize(reunion))
 
-@reuniones.route('/<int:id>', methods=["PUT"])
+@reuniones.route('/reuniones/<int:id>', methods=["GET", "PUT"])
 def editarReunion(id):
-    form = request.form
-
     reunion = Reunion.query.get(id)
-    reunion.fechaHora = form["fechaHora"]
 
-    db.session.commit()
+    anfitriones = db.session.execute(db.select(Anfitrion)).scalars()
 
-    return jsonify(Reunion.serialize(reunion))  
+    if request.method == "PUT":
+        body = request.get_json()
+
+        reunion.fechaHora = body["fechaHora"]
+
+        id_anfitrion = db.session.execute(db.select(Anfitrion).filter_by(nombre=body["anfitrion"])).fetchone()[0].id
+        reunion.idAnfitrion = id_anfitrion
+
+        db.session.commit()
+        return "editado"
+
+    return render_template("update.html", reunion = reunion, anfitriones = anfitriones)
 
 @reuniones.route('/<int:id>', methods=["DELETE"])
 def eliminarReunion(id):
@@ -84,5 +92,4 @@ def eliminarReunion(id):
     reunion = Reunion.query.get(id)
     db.session.delete(reunion)
     db.session.commit()
-    # return jsonify(Reunion.serialize(reunion))
-    return redirect(url_for('reuniones.getAllReuniones'))
+    return "eliminado"

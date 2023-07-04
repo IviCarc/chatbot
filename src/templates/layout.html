@@ -25,79 +25,57 @@
     {% include 'partials/_navbar.html' %}
 
     <div class="container p-2">
-      
       <!-- FORM -->
 
   
       <!-- contacts list -->
       <div class="w-50 m-auto">
         {% for reunion in reuniones %}
-          <div class="card mb-1 bg-dark text-white">
+          <div class="card mb-5 bg-light shadow-lg ">
             
             <div class="card-body py-2 px-3">
-              <div class="d-flex justify-content-between">
-                <h5 class="card-title h3">{{ reunion.fechaHora}}</h5>
+              <div class="">
+                <h5 class="card-title h3 text-center">{{ reunion.fechaHora}}</h5>
               </div>
               <div class="d-flex justify-content-around">
                 <div>
                   <h4 class="text-center">Cliente</h4>
-                  <p class="card-text">{{ reunion.cliente.nombre }}</p>
-                  <p class="card-text">{{ reunion.cliente.email }}</p>
-                  <p class="card-text">{{ reunion.cliente.telefono }}</p>
+                  <p class="card-text border-bottom border-dark">{{ reunion.cliente.nombre }}</p>
+                  <p class="card-text border-bottom border-dark">{{ reunion.cliente.email }}</p>
+                  <p class="card-text border-bottom border-dark">{{ reunion.cliente.telefono }}</p>
                 </div>
                 <div>
                   <h4 class="text-center">Anfitrion</h4>
-                  <p class="card-text">{{ reunion.anfitrion.nombre }}</p>
-                  <p class="card-text">{{ reunion.anfitrion.email }}</p>
-                  <p class="card-text">{{ reunion.anfitrion.telefono }}</p>
+                  <p class="card-text border-bottom border-dark">{{ reunion.anfitrion.nombre }}</p>
+                  <p class="card-text border-bottom border-dark">{{ reunion.anfitrion.email }}</p>
+                  <p class="card-text border-bottom border-dark">{{ reunion.anfitrion.telefono }}</p>
                 </div>
               </div>
             </div>
             
-            <div class="d-flex justify-content-center p-3">
+            <div class="d-flex justify-content-center p-3 gap-3">
 
-              <!-- <a href="/reuniones" class="btn btn-danger btn-sm rounded-0" onclick="sendDelete({{'reunion.id' }})">Delete</a> -->
-              <button onclick="sendDelete({{reunion.id}})">DELETE</button>
+              <a href="reuniones/{{ reunion.id }}" class="btn btn-primary">Actualizar</a>
+              <button onclick="sendDelete({{reunion.id}})" class="btn btn-danger">Eliminar</button>
 
-                <script>
-                function sendDelete(id) {
-                  print("http://localhost:80/" + id)
-                  fetch("http://localhost:80/" + id, {method:'DELETE'})
-                    .then(res => res.text())
-                    .then(res => console.log(res))
-                  // Crear una solicitud HTTP con el método DELETE
-                  // var xhr = new XMLHttpRequest();
-                  // xhr.open("DELETE", url);
-
-                  // // Enviar la solicitud
-                  // xhr.send();
-
-                  // // Manejar la respuesta si es necesario
-                  // xhr.onreadystatechange = function() {
-                  //   if (xhr.readyState === XMLHttpRequest.DONE) {
-                  //     if (xhr.status === 200) {
-                  //       // La solicitud se completó con éxito
-                  //       console.log("La reunión ha sido eliminada");
-                  //     } else {
-                  //       // Ocurrió un error al realizar la solicitud
-                  //       console.error("Ocurrió un error al eliminar la reunión");
-                  //     }
-                  //   }
-                  // };
-                }
-                </script>
-              <!-- <a href="/reuniones" class="btn btn-dark btn-sm rounded-0">Edit</a>
-              <a href="{{ url_for('reuniones.eliminarReunion', id=reunion.id, _method='DELETE') }}" class="btn btn-danger btn-sm rounded-0">Delete</a> -->
+                
             </div>
           </div>
         {% endfor %}
       </div>
       </div>
+
+
   
     </div>
 
-    
+    <div class="container">
+      {% block body %} {% endblock %}
+    </div>
+
     <!-- scripts -->
+    <script src="../static/styles/reuniones.js"></script>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
