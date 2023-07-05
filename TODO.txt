@@ -41,3 +41,6 @@ API:
     Input calendario, restringir: No poder seleccionar fechas anterior al día actual y entre X e Y hs ✔️
     Elegir un anfitrion de manera random, sin importar disponibilidad (temporal)
     Frontend CRUD ✔️
+
+05/07/23
+    login
