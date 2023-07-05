@@ -1,10 +1,14 @@
 // Obtén el elemento del formulario por su ID
 const formulario = document.getElementById("formulario");
 
+
 // Función para mostrar el formulario
 function mostrarFormulario() {
   formulario.style.display = "block";
 }
+
+// var fechaHoraInput = document.getElementById('fechaHora');
+
 
 // Función para ocultar el formulario
 function ocultarFormulario() {

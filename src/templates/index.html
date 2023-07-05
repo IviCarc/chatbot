@@ -1,53 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Chatbot</title>
-  
-  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
-  <script src="{{ url_for('static',filename='styles/main.js') }}"> </script>
-  
+
+  <!-- CSS de Bootstrap -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/mainpage.css') }}">
+
 </head>
+
 <body>
-  <div class="chat-container">
-
-    <div class="chat-header">Chatbot</div>
-
-    <div class="chat-body" id="chat-body">
-      <!-- <p> {{ botQuestion }} </p> -->
-      <!--  mensajes del bot  -->
+  <div class="containerV1">
+    <div class="center-container">
+      <button class="botonmostrar" id="mostrarBoton" style="display: block;">Mostrar Chatbot</button>
     </div>
- 
-    <div class="box-chat" id="formulario" style="display: none;">
-
-      <!-- <h5 class="title-chat">REGISTRAR REUNION</h5> -->
-
-      <form class="form" action="/" method="post">
-
-        <label for="nombre">Nombre:</label>
-        <input type="text" class="chat-user" id="nombre" name="nombre"><br>
-
-        <label for="fecha">Fecha:</label>
-        <input type="datetime-local" class="chat-fechahora" id="fechaHora" name="fechaHora" min="2023-06-07T00:00" max="2023-06-14T00:00"><br>
-
-        <!-- <label for="hora">Hora:</label> -->
-        <label for="nombre">Correo:</label>
-        <input type="email" class="chat-correo" id="correoCliente" name="correoCliente"><br>
-
-        <label for="nombre">Teléfono:</label>
-        <input type="text" class="chat-telefono" id="telefono" name="telefono"><br><br>
-
-        <button class="boton" type="submit">Enviar</button>
-
-      </form>
-
-    </div> 
-
-    <input style="display: block;" type="text" class="chat-input" id="user-input" name="userInput" placeholder="Escribe un mensaje..." autofocus >
-    
   </div>
 
-  <script src="{{ url_for('static',filename='styles/bot.js') }}"></script>
-  <!-- <script src="bot.js"></script> -->
+  <div class="chatbot-container" id="chatbotContainer" style="display: none;">
+
+    <!-- contenido HTML deL chatbot  -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mx-auto">
+
+          <div class="chat-container">
+            <div class="chat-header">
+              <h1 class="chat-title">Chatbot</h1>
+              <h2 class="chat-subtitle">Laboratorio Consultar SRL</h2>
+            </div>
+            <div class="chat-body" id="chat-body">
+              <!-- mensajes del bot -->
+            </div>
+
+            <div class="box-chat" id="formulario" style="display: none;">
+              <form class="form" action="/" method="post">
+                <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre:</label>
+                  <input type="text" class="form-control" id="nombre" name="nombre">
+                </div>
+                <div class="mb-3">
+                  <label for="fechaHora" class="form-label">Fecha:</label>
+                  <input type="datetime-local" class="form-control" id="fechaHora" name="fechaHora" min="" max="">
+                </div>
+                <div class="mb-3">
+                  <label for="correoCliente" class="form-label">Correo:</label>
+                  <input type="email" class="form-control" id="correoCliente" name="correoCliente">
+                </div>
+                <div class="mb-3">
+                  <label for="telefono" class="form-label">Teléfono:</label>
+                  <input type="teL" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" id="telefono" name="telefono">
+                </div>
+
+                <button class="boton">Enviar</button>
+
+              </form>
+
+              <!-- 
+              <datalist id="lista">
+                <option value="2015-05-05 08:00">
+
+                <option value="2015-05-12 11:30">
+
+                <option value="2015-05-19 09:00">
+              </datalist> 
+              -->
+
+            </div>
+
+            <input style="display: block;" type="text" class="form-control chat-input" id="user-input" name="userInput"
+              placeholder="Escribe un mensaje..." autofocus>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+
+
+
+
+
+
+  <!-- JavaScript de Bootstrap y jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Scripts personalizados -->
+  <script src="{{ url_for('static', filename='styles/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='styles/bot.js') }}"></script>
+
+  <script>
+    const mostrarBoton = document.getElementById("mostrarBoton");
+    const chatbotContainer = document.getElementById("chatbotContainer");
+
+    mostrarBoton.addEventListener("click", function () {
+      chatbotContainer.style.display = "block";
+      mostrarBoton.style.display = 'none';
+    });
+
+    var fechaHoraInput = document.getElementById('fechaHora');
+
+    function actualizarLimites() {
+      var hoy = new Date();
+      hoy.setDate(hoy.getDate() + 1); // Establecer el día siguiente al día actual
+      var minDate = hoy.toISOString().slice(0, 16);
+      var maxDate = new Date(hoy.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16);
+
+      fechaHoraInput.setAttribute('min', minDate);
+      fechaHoraInput.setAttribute('max', maxDate);
+    }
+
+    actualizarLimites(); 
+
+    // Actualizar los límites cada vez que pasa un día (cada 24 horas)
+    setInterval(actualizarLimites, 24 * 60 * 60 * 1000);
+
+  </script>
+
 </body>
 
 </html>
