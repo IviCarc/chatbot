@@ -21,7 +21,9 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 # no cache
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
-db.init_app(app)
+# print(app.config["SQLALCHEMY_DATABASE_URI"])
+
+db.init_app(app)    
 # SQLAlchemy(app)
 
 with app.app_context():

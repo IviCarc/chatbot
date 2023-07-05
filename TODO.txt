@@ -35,7 +35,6 @@ API:
 28/06/23
     Estilos al FORM ✔️
     ORM (SQLAlchemy) ✔️
-    Google calendar
 
 29/06/23
     Input calendario, restringir: No poder seleccionar fechas anterior al día actual y entre X e Y hs ✔️
