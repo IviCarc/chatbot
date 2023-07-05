@@ -23,12 +23,12 @@
 
   <div class="chatbot-container" id="chatbotContainer" style="display: none;">
 
-    <!-- Todo el contenido HTML de tu chatbot aquí -->
+    <!-- contenido HTML deL chatbot  -->
     <div class="container">
       <div class="row">
         <div class="col-lg-6 mx-auto">
 
-          <di v class="chat-container">
+          <div class="chat-container">
             <div class="chat-header">
               <h1 class="chat-title">Chatbot</h1>
               <h2 class="chat-subtitle">Laboratorio Consultar SRL</h2>
@@ -45,8 +45,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="fechaHora" class="form-label">Fecha:</label>
-                  <input type="datetime-local" class="form-control" id="fechaHora" name="fechaHora" min="" max=""
-                    value="">
+                  <input type="datetime-local" class="form-control" id="fechaHora" name="fechaHora" min="" max="">
                 </div>
                 <div class="mb-3">
                   <label for="correoCliente" class="form-label">Correo:</label>
@@ -54,21 +53,36 @@
                 </div>
                 <div class="mb-3">
                   <label for="telefono" class="form-label">Teléfono:</label>
-                  <input type="text" class="form-control" id="telefono" name="telefono">
+                  <input type="teL" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" id="telefono" name="telefono">
                 </div>
+
                 <button class="boton">Enviar</button>
 
               </form>
+
+              <!-- 
+              <datalist id="lista">
+                <option value="2015-05-05 08:00">
+
+                <option value="2015-05-12 11:30">
+
+                <option value="2015-05-19 09:00">
+              </datalist> 
+              -->
+
             </div>
 
             <input style="display: block;" type="text" class="form-control chat-input" id="user-input" name="userInput"
               placeholder="Escribe un mensaje..." autofocus>
+
           </div>
 
         </div>
+
       </div>
     </div>
   </div>
+  <!-- </div> -->
 
 
 
@@ -96,6 +110,7 @@
 
     function actualizarLimites() {
       var hoy = new Date();
+      hoy.setDate(hoy.getDate() + 1); // Establecer el día siguiente al día actual
       var minDate = hoy.toISOString().slice(0, 16);
       var maxDate = new Date(hoy.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16);
 
@@ -103,10 +118,11 @@
       fechaHoraInput.setAttribute('max', maxDate);
     }
 
-    actualizarLimites(); // Llamar a la función por primera vez
+    actualizarLimites(); 
 
     // Actualizar los límites cada vez que pasa un día (cada 24 horas)
     setInterval(actualizarLimites, 24 * 60 * 60 * 1000);
+
   </script>
 
 </body>
