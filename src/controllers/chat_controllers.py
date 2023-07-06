@@ -10,9 +10,10 @@ def bot_chat():
 
 @bot.route('/process', methods=["POST"])
 def process():
-    user_message = request.form["usesrInput"]
-    response = chat(user_message)
+    user_message = request.form["userInput"]
+    print(user_message)
+    answer = chat(user_message)
+    print(answer)
 
-    bot_message = "testtttt"
-
-    return jsonify({'userMessage' : user_message, 'botMessage' : bot_message})
+    return jsonify({'userMessage' : user_message, 'botMessage' : answer})
+    

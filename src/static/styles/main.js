@@ -17,6 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
     chatBody.appendChild(botMessage);
   }
 
+  const botText = "¡Hola! Soy un bot de asistencia tecnica para el Laboratorio Consultar. ¿Que puedo hacer para ayudarte?";
+  addBotMessage(botText);
+
+
   function processUserInput() {
     const message = userInput.value.trim();
     if (message === '') {
@@ -30,25 +34,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     addUserMessage(message);
-    
     userInput.value = '';
+    
+    // addBotMessage(botMessage)
+    // chatBody.value = '';
 
     // Envía el mensaje al servidor Flask utilizando AJAX
     const formData = new FormData();
     formData.append('userInput', message);
 
-    // fetch('/process', {
-    //   method: 'POST',
-    //   body: formData
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //   const botMessage = data.botMessage;
-    //   addBotMessage(botMessage);
-    // })
-    // .catch(error => {
-    //   console.error('Error:', error);
-    // });
+    fetch('/process', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      const botMessage = data.botMessage;
+      console.log(botMessage)
+      addBotMessage(botMessage);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
   }
 
   userInput.addEventListener('keydown', (event) => {

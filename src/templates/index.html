@@ -46,7 +46,8 @@
                 </div>
                 <div class="mb-3">
                   <label for="fechaHora" class="form-label">Fecha:</label>
-                  <input type="datetime-local" class="form-control" id="fechaHora" name="fechaHora" min="" max="">
+                  <input type="datetime-local" class="form-control" list="listafechas" id="fechaHora" name="fechaHora"
+                    min="" max="">
                 </div>
                 <div class="mb-3">
                   <label for="correo" class="form-label">Correo:</label>
@@ -61,15 +62,20 @@
 
               </form>
 
-              <!-- 
-              <datalist id="lista">
-                <option value="2015-05-05 08:00">
 
-                <option value="2015-05-12 11:30">
 
-                <option value="2015-05-19 09:00">
-              </datalist> 
-              -->
+              <datalist id="listafechas">
+
+                <option value="">
+
+                <option value="">
+
+                <option value="">
+
+                <option value="">
+
+              </datalist>
+
 
             </div>
 
@@ -107,22 +113,74 @@
       mostrarBoton.style.display = 'none';
     });
 
-    var fechaHoraInput = document.getElementById('fechaHora');
 
-    function actualizarLimites() {
-      var hoy = new Date();
-      hoy.setDate(hoy.getDate() + 1); // Establecer el día siguiente al día actual
-      var minDate = hoy.toISOString().slice(0, 16);
-      var maxDate = new Date(hoy.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16);
+    var datalist = document.getElementById("listafechas");
 
-      fechaHoraInput.setAttribute('min', minDate);
-      fechaHoraInput.setAttribute('max', maxDate);
+    // Función para obtener la fecha actual y generar las opciones de fecha y hora
+    function actualizarLista() {
+      // Obtén la fecha actual
+      var fechaActual = new Date();
+
+      // Crea un array de opciones de fecha y hora
+      var opcionesFechaHora = [];
+
+      // Genera las opciones de fecha y hora para una semana sin incluir los sábados y domingos
+      for (var i = 0; i < 7; i++) {
+        // Agrega el número de días a la fecha actual
+        fechaActual.setDate(fechaActual.getDate() + 1);
+
+        // Verifica si el día de la semana es sábado o domingo
+        if (fechaActual.getDay() !== 0 && fechaActual.getDay() !== 6) {
+          // Genera las opciones de hora entre las 14:00 y las 15:00
+          for (var j = 0; j < 60; j++) {
+            var hora = 11 + j;
+            if (hora < 13) {
+              // Crea una nueva fecha con la fecha y hora actualizadas
+              var fecha = new Date(fechaActual.getFullYear(), fechaActual.getMonth(), fechaActual.getDate(), hora, 0);
+
+              // Formatea la fecha en el formato deseado (YYYY-MM-DD HH:MM)
+              var fechaFormateada = fecha.toISOString().slice(0, 16).replace("T", " ");
+
+              // Agrega la opción al array
+              opcionesFechaHora.push('<option value="' + fechaFormateada + '">');
+            }
+          }
+        }
+      }
+
+      // Actualiza el contenido del datalist con las nuevas opciones
+      datalist.innerHTML = opcionesFechaHora.join("");
     }
 
-    actualizarLimites();
+    // Llama a la función para actualizar la lista inicialmente
+    actualizarLista();
 
-    // Actualizar los límites cada vez que pasa un día (cada 24 horas)
-    setInterval(actualizarLimites, 24 * 60 * 60 * 1000);
+    // Programa la actualización de la lista cada vez que pasa un día
+    setInterval(actualizarLista, 24 * 60 * 60 * 1000);
+
+
+
+
+
+
+    // LIMITAR LOS VALORES DE FECHA Y HORA A UNA SEMANA
+
+    // var fechaHoraInput = document.getElementById('fechaHora');
+
+    // function actualizarLimites() {
+    //   var hoy = new Date();
+    //   hoy.setDate(hoy.getDate() + 1); // Establecer el día siguiente al día actual
+    //   var minDate = hoy.toISOString().slice(0, 16);
+    //   var maxDate = new Date(hoy.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16);
+
+    //   fechaHoraInput.setAttribute('min', minDate);
+    //   fechaHoraInput.setAttribute('max', maxDate);
+    // }
+
+    // actualizarLimites();
+
+    // // Actualizar los límites cada vez que pasa un día (cada 24 horas)
+    // setInterval(actualizarLimites, 24 * 60 * 60 * 1000);
 
   </script>
 

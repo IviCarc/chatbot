@@ -36,20 +36,14 @@ def make_chain():
     )
 
 def chat(question):
-    load_dotenv("../../")
+    load_dotenv("../")
 
-
-    URL =  os.getenv("URL")
-
-    # res = requests.get(f"http://{URL}:5000/") 
 
     with open('prompt2.txt', 'r', encoding='utf-8') as file:
         # Lee todo el contenido del archivo
         prompt = file.read()
 
     # Imprime el contenido del archivo
-    # print(prompt)
-
     chain = make_chain()
     chat_history = [
         SystemMessage(content=prompt)
@@ -57,15 +51,11 @@ def chat(question):
 
     reunion = {}
 
-        
-    # question = message
-
-    # if question == "q":
-
     if question == "AGENDAR":
         print("UIHAID")
     else:
         # Generate answer
+            print(question)
             response = chain({"question": question, "chat_history": chat_history})
 
             # Retrieve answer
@@ -74,26 +64,6 @@ def chat(question):
             chat_history.append(HumanMessage(content=question))
             chat_history.append(AIMessage(content=answer))
 
-            # Display answer
-        # print("\n\nSources:\n")
-            # for document in source:
-            #     print(f"Page: {document.metadata['page_number']}")
-                # print(f"Text chunk: {document.page_content[:160]}...\n")
-        # print(f"Answer: {answer}")
+            reunion["chat"] = messages_to_dict(chat_history)
 
-    reunion["chat"] = messages_to_dict(chat_history)
-
-    return response
-    
-    
-
-    # print(URL)
-
-    # print(dicts)    
-
-
-    # print(messages_from_dict(dicts))   
-    # print(URL) 
-
-    # res = requests.post(f"http://{URL}:5000", json=json.dumps(reunion)) 
-  
+            return answer
