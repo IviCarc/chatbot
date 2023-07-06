@@ -62,6 +62,8 @@ def guardarAnfitrion(nombre, correo, telefono):
 def agendarReunion():
     form = request.form
 
+    print(form)
+
     cliente_id = None
 
     cliente = db.session.execute(db.select(Cliente).filter_by(nombre=form["nombre"])).fetchone()

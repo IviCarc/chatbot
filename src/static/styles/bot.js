@@ -13,22 +13,36 @@ function mostrarFormulario() {
 // Función para ocultar el formulario
 function ocultarFormulario() {
   formulario.style.display = "none";
-  document.getElementById("myDIV").style.display = "block";
+  document.getElementById("user-input").style.display = "block";
 }
 
 // Escucha el evento de envío del formulario
-// formulario.addEventListener("submit", function(event) {
-  
-//   event.preventDefault(); // Evita que se recargue la página al enviar el formulario
-//   // Aquí puedes agregar la lógica para procesar los datos del formulario y agendar la reunión
-//   // Por ejemplo, puedes obtener los valores de los campos de entrada usando:
-//   // const nombre = document.getElementById("nombre").value;
-//   // const fecha = document.getElementById("fecha").value;
-//   // const hora = document.getElementById("hora").value;
-//   // Y luego puedes enviar los datos a través de una solicitud al servidor o realizar otras acciones necesarias
-//   console.log("Formulario enviado");
-//   ocultarFormulario(); // Oculta el formulario después de enviarlo
-// });
+formulario.addEventListener("submit", function(event) {
+  event.preventDefault(); // Evita que se recargue la página al enviar el formulario
+  // Aquí puedes agregar la lógica para procesar los datos del formulario y agendar la reunión
+  // Por ejemplo, puedes obtener los valores de los campos de entrada usando:
+  // const nombre = document.getElementById("nombre").value;
+  // const fecha = document.getElementById("fecha").value;
+  // const hora = document.getElementById("hora").value;
+  // Y luego puedes enviar los datos a través de una solicitud al servidor o realizar otras acciones necesarias
+  let formData = new FormData(document.getElementById("form"));
+  formData.append('chat', "adad")
+  // formData.append('fechaHora', formData.get('fechaHora').replace("T", " "))
+  formData.set('fechaHora', formData.get('fechaHora').replace("T", " "))
+  console.log(formData.getAll("fechaHora"))
+  fetch("http://localhost:80/", {method:"POST", body: formData})
+  .then(res => res.text())
+  .then(res => res.json())
+  .catch(err => console.log(err))
+
+  // let config = {
+  //   method: 'PUT',
+  //   headers: { "Content-Type": "application/json" },
+  // }
+
+  // console.log("Formulario enviado");
+  ocultarFormulario(); // Oculta el formulario después de enviarlo
+});
 
 // Ejemplo de cómo invocar la función para mostrar el formulario en respuesta a un comando
 const comando = document.getElementById("user-input").value;
