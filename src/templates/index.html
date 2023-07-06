@@ -38,7 +38,8 @@
             </div>
 
             <div class="box-chat" id="formulario" style="display: none;">
-              <form class="form" action="/" method="post">
+
+              <form class="form" id="form" action="/" method="post">
                 <div class="mb-3">
                   <label for="nombre" class="form-label">Nombre:</label>
                   <input type="text" class="form-control" id="nombre" name="nombre">
@@ -48,12 +49,12 @@
                   <input type="datetime-local" class="form-control" id="fechaHora" name="fechaHora" min="" max="">
                 </div>
                 <div class="mb-3">
-                  <label for="correoCliente" class="form-label">Correo:</label>
-                  <input type="email" class="form-control" id="correoCliente" name="correoCliente">
+                  <label for="correo" class="form-label">Correo:</label>
+                  <input type="email" class="form-control" id="correo" name="correo">
                 </div>
                 <div class="mb-3">
                   <label for="telefono" class="form-label">Teléfono:</label>
-                  <input type="teL" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" id="telefono" name="telefono">
+                  <input type="teL" class="form-control" id="telefono" name="telefono">
                 </div>
 
                 <button class="boton">Enviar</button>
@@ -118,7 +119,7 @@
       fechaHoraInput.setAttribute('max', maxDate);
     }
 
-    actualizarLimites(); 
+    actualizarLimites();
 
     // Actualizar los límites cada vez que pasa un día (cada 24 horas)
     setInterval(actualizarLimites, 24 * 60 * 60 * 1000);
