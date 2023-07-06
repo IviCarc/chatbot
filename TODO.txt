@@ -26,7 +26,7 @@ API:
     UTILIZAR BLUEPRINT ✔️
 
     Enviar un mail al anfitrion para avisarle de la reunión
-
+    Enviar errores al usuario como por ejemplo fechas invalidas o ya ocupadas
 
 27/06/23
     Si el usuario escribe "AGENDAR", popea un form (nombre, telefono, correo, calendario, fechahora) ✔️
