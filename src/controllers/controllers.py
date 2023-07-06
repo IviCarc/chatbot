@@ -113,6 +113,7 @@ def eliminarReunion(id):
 
 @reuniones.route('/login', methods=["GET", "POST"])
 def login():
+    msg = ""
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         # Create variables for easy access
         username = request.form['username']
@@ -121,27 +122,28 @@ def login():
         # hash = password
         # hash = hashlib.sha1(hash.encode())
         # password = hash.hexdigest()
-
+        
         # Check if account exists using MySQL
         try:
             account = db.session.execute(db.select(Usuario).filter_by(username=username)).fetchone()[0]
-            print(account)
         except:
-            return 'La cuenta no existe'
+            msg = 'No existe un usuario con ese nombre'
+            return render_template("login.html", msg=msg)
          # Create session data, we can access this data in other routes
         if account.password != password:
-            return 'La contraseña es incorrecta'
-        session['loggedin'] = True
-        session['id'] = account.id
-        print(session['id'])
-        session['username'] = account.username
-        # Redirect to home page
-        print("LOGGED")
-        return redirect(url_for('reuniones.getAllReuniones'))
+            msg = "La contraseña no es correcta"
+        else:
+            session['loggedin'] = True
+            session['id'] = account.id
+            print(session['id'])
+            session['username'] = account.username
+            # Redirect to home page
+            print("LOGGED")
+            return redirect(url_for('reuniones.getAllReuniones'))
 
     if 'loggedin' in session:
         return redirect(url_for('reuniones.getAllReuniones'))
-    return render_template("login.html")
+    return render_template("login.html", msg=msg)
 
 @reuniones.route('/logout')
 def logout():
