@@ -1,10 +1,12 @@
 from flask import request, Blueprint, jsonify, render_template, redirect, url_for, jsonify, session
 from utils.db import db
 import hashlib
+from utils.mail import enviarCorreo
 from models.anfitrion import Anfitrion 
 from models.cliente import Cliente
 from models.reunion import Reunion 
-from models.usuario import Usuario 
+from models.usuario import Usuario
+import random
 
 reuniones = Blueprint("reuniones", __name__)
 
@@ -62,8 +64,8 @@ def guardarAnfitrion(nombre, correo, telefono):
 def agendarReunion():
     form = request.form
 
-    print(form)
-
+    # Agregar el cliente si no existe
+    
     cliente_id = None
 
     cliente = db.session.execute(db.select(Cliente).filter_by(nombre=form["nombre"])).fetchone()
@@ -73,10 +75,17 @@ def agendarReunion():
     else:
         cliente_id = cliente[0].id
 
+    # Seleccionar el cliente
+
+    anfitriones = db.session.execute(db.select(Anfitrion)).fetchall()
+    anfitrion = anfitriones[random.randint(0, len(anfitriones)-1)]
+
     reunion = Reunion(form["chat"], form["fechaHora"], cliente_id, 1)
 
     db.session.add(reunion)
     db.session.commit()
+
+    enviarCorreo(form["correo"], form["nombre"],  form["telefono"], form["fechaHora"], form["chat"], reunion.id)
 
     return jsonify(Reunion.serialize(reunion))
 
@@ -155,3 +164,4 @@ def logout():
    session.pop('username', None)
    # Redirect to login page
    return redirect(url_for('reuniones.login'))
+

@@ -19,6 +19,7 @@ mysql-connector-python = "*"
 sqlalchemy = "*"
 flask-sqlalchemy = "*"
 flask-cors = "*"
+flask-mail = "*"
 
 [dev-packages]
 
