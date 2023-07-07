@@ -51,19 +51,21 @@ def chat(question):
 
     reunion = {}
 
-    if question == "AGENDAR":
-        print("UIHAID")
-    else:
-        # Generate answer
-            print(question)
-            response = chain({"question": question, "chat_history": chat_history})
+    # if question == "AGENDAR":
+    #     print("UIHAID")
+    # else:
 
-            # Retrieve answer
-            answer = response["answer"]
-            # source = response["source_documents"]
-            chat_history.append(HumanMessage(content=question))
-            chat_history.append(AIMessage(content=answer))
+    # Generate answer
+    print(question)
+    response = chain({"question": question, "chat_history": chat_history})
 
-            reunion["chat"] = messages_to_dict(chat_history)
+    # Retrieve answer
+    answer = response["answer"]
+    # source = response["source_documents"]
+    
+    chat_history.append(HumanMessage(content=question))
+    chat_history.append(AIMessage(content=answer))
 
-            return answer
+    reunion["chat"] = messages_to_dict(chat_history)
+
+    return answer

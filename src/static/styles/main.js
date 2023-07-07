@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (message === "AGENDAR") {
       formulario.style.display = "block";
       document.getElementById("user-input").style.display = "none";
+      return;
     }
 
 
@@ -50,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(response => response.json())
     .then(data => {
       const botMessage = data.botMessage;
+
       console.log(botMessage)
       addBotMessage(botMessage);
     })
@@ -62,6 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.keyCode === 13) {
       event.preventDefault(); // Evita el comportamiento predeterminado (enviar formulario)
       processUserInput();
+      document.getElementById("form").reset();
+      document.getElementById("user-input").value = '';
     }
   });
 });

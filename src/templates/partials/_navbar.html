@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-black">
     <div class="container">
       <a class="navbar-brand" href="/reuniones">Reuniones</a>
+      <!-- <a class="nav-link active text-white" aria-current="page" href="">Subir PDF's</a> -->
+
       <button
         class="navbar-toggler"
         type="button"
@@ -16,7 +18,8 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
             {%if session['loggedin'] %}
-              <a class="nav-link active" aria-current="page" href="/logout">LogOut</a>
+              <a class="nav-link active text-white" aria-current="page" href="/loadPDF">Subir PDF's</a>
+              <a class="nav-link active" aria-current="page" href="/logout">LogOut</a>              
             {% endif %}
           </li>
         </ul>

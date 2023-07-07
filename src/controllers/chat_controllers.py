@@ -16,4 +16,12 @@ def process():
     print(answer)
 
     return jsonify({'userMessage' : user_message, 'botMessage' : answer})
+
+@bot.route('/loadPDF', methods=["POST", "GET"])
+def loadPDF():
+    if request.method == "POST":
+        return
+
+    return render_template("loadPDF.html")
+
     
