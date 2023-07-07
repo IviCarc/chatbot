@@ -46,15 +46,16 @@
                 method="post">
                 <div class="mb-3">
                   <label for="nombre" class="form-label">Nombre:</label>
-                  <input type="text" class="form-control" id="nombre" name="nombre">
+                  <input type="text" class="form-control" id="nombre" autofocus="autofocus" name="nombre" required>
                 </div>
                 <div class="mb-3">
                   <label for="fechaHora" class="form-label">Fecha:</label>
-                  <input type="datetime-local" class="form-control" id="fechaHora" name="fechaHora" min="" max="">
+                  <input type="datetime-local" class="form-control" list="listafechas" id="fechaHora"  name="fechaHora"
+                    min="" max="" required>
                 </div>
                 <div class="mb-3">
                   <label for="correo" class="form-label">Correo:</label>
-                  <input type="email" class="form-control" id="correo" name="correo">
+                  <input type="email" class="form-control" id="correo" name="correo" required>
                 </div>
                 <div class="mb-3">
                   <label for="telefono" class="form-label">Teléfono:</label>
@@ -68,6 +69,16 @@
                 <button class="btn btn-primary 2-50">Enviar</button>
 
               </form>
+
+              <!-- 
+              <datalist id="lista">
+                <option value="2015-05-05 08:00">
+
+                <option value="2015-05-12 11:30">
+
+                <option value="2015-05-19 09:00">
+              </datalist> 
+              -->
 
             </div>
 
