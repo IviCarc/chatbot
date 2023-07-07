@@ -12,12 +12,15 @@
   <!-- Estilos personalizados -->
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/mainpage.css') }}">
 
+  <!-- Validacion teléfono -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 </head>
 
 <body>
   <div class="containerV1">
     <div class="center-container">
-      <button class="botonmostrar" id="mostrarBoton" style="display: block;">Mostrar Chatbot</button>
+      <button class="btn btn-primary" id="mostrarBoton" style="display: block;">Mostrar Chatbot</button>
     </div>
   </div>
 
@@ -28,8 +31,8 @@
       <div class="row">
         <div class="col-lg-6 mx-auto">
 
-          <div class="chat-container">
-            <div class="chat-header">
+          <div class="chat-container card shadow-lg">
+            <div class="chat-header" id="chat-header">
               <h1 class="chat-title">Chatbot</h1>
               <h2 class="chat-subtitle">Laboratorio Consultar SRL</h2>
             </div>
@@ -37,9 +40,10 @@
               <!-- mensajes del bot -->
             </div>
 
-            <div class="box-chat" id="formulario" style="display: none;">
+            <div class="card shadow-lg border border-dark box-chat" id="formulario" style="display: none;">
 
-              <form class="form" id="form" action="/" method="post">
+              <form class=" form d-flex justify-content-center flex-column align-content-around p-3" id="form" action="/"
+                method="post">
                 <div class="mb-3">
                   <label for="nombre" class="form-label">Nombre:</label>
                   <input type="text" class="form-control" id="nombre" name="nombre">
@@ -54,22 +58,16 @@
                 </div>
                 <div class="mb-3">
                   <label for="telefono" class="form-label">Teléfono:</label>
-                  <input type="teL" class="form-control" id="telefono" name="telefono">
+                  <input id="phone" type="tel" name="telefono" class="form-control" oninput="process(event)" />
+                  <!-- <input type="submit" class="btn" value="Verify" /> -->
+                  <div class="alert alert-info" style="display: none;"></div>
+                  <div class="alert alert-error" style="display: none"></div>
+                  <!-- <input type="teL" class="form-control" id="telefono" name="telefono"> -->
                 </div>
 
-                <button class="boton">Enviar</button>
+                <button class="btn btn-primary 2-50">Enviar</button>
 
               </form>
-
-              <!-- 
-              <datalist id="lista">
-                <option value="2015-05-05 08:00">
-
-                <option value="2015-05-12 11:30">
-
-                <option value="2015-05-19 09:00">
-              </datalist> 
-              -->
 
             </div>
 
@@ -85,11 +83,6 @@
   </div>
   <!-- </div> -->
 
-
-
-
-
-
   <!-- JavaScript de Bootstrap y jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
@@ -97,34 +90,6 @@
   <!-- Scripts personalizados -->
   <script src="{{ url_for('static', filename='styles/main.js') }}"></script>
   <script src="{{ url_for('static', filename='styles/bot.js') }}"></script>
-
-  <script>
-    const mostrarBoton = document.getElementById("mostrarBoton");
-    const chatbotContainer = document.getElementById("chatbotContainer");
-
-    mostrarBoton.addEventListener("click", function () {
-      chatbotContainer.style.display = "block";
-      mostrarBoton.style.display = 'none';
-    });
-
-    var fechaHoraInput = document.getElementById('fechaHora');
-
-    function actualizarLimites() {
-      var hoy = new Date();
-      hoy.setDate(hoy.getDate() + 1); // Establecer el día siguiente al día actual
-      var minDate = hoy.toISOString().slice(0, 16);
-      var maxDate = new Date(hoy.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16);
-
-      fechaHoraInput.setAttribute('min', minDate);
-      fechaHoraInput.setAttribute('max', maxDate);
-    }
-
-    actualizarLimites();
-
-    // Actualizar los límites cada vez que pasa un día (cada 24 horas)
-    setInterval(actualizarLimites, 24 * 60 * 60 * 1000);
-
-  </script>
 
 </body>
 

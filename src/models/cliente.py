@@ -5,7 +5,7 @@ class Cliente(db.Model, Serializer):
     id = db.Column(db.Integer, primary_key = True)
     nombre = db.Column(db.String(50))
     email = db.Column(db.String(100))
-    telefono = db.Column(db.Integer)
+    telefono = db.Column(db.String(16))
 
     reuniones = db.relationship('Reunion', backref='cliente', lazy=True)
 

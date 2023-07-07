@@ -7,10 +7,13 @@ BOT:
     Indicaciones claras sobre funcionamiento.
 
 FRONTEND.:
-    Enviar mensajes.
+    Enviar mensajes.✔️
     Enviar POST a la API para agendar la reunión. ✔️
     Funcionalidad CRUD ✔️
     Utilizar un calendario para agendar reuniones en fechas disponibles. (no fechas disponibles) ✔️
+    Responsive
+    Validacion inputs
+    Validar fechas
 
 API:
     GET => Envía las reuniones programadas. ✔️
@@ -27,6 +30,7 @@ API:
 
     Enviar un mail al anfitrion para avisarle de la reunión
     Enviar errores al usuario como por ejemplo fechas invalidas o ya ocupadas
+    Validar fechas
 
 27/06/23
     Si el usuario escribe "AGENDAR", popea un form (nombre, telefono, correo, calendario, fechahora) ✔️

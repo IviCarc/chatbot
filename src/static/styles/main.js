@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const chatBody = document.getElementById('chat-body');
+  const chatHeader = document.getElementById("chat-header");
   const userInput = document.getElementById('user-input');
 
   function addUserMessage(message) {
@@ -25,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (message === "AGENDAR") {
       formulario.style.display = "block";
+      chatBody.style.filter  = 'blur(5px)'
+      chatHeader.style.filter  = 'blur(5px)'
       document.getElementById("user-input").style.display = "none";
     }
 
@@ -58,3 +61,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
+const mostrarBoton = document.getElementById("mostrarBoton");
+const chatbotContainer = document.getElementById("chatbotContainer");
+
+mostrarBoton.addEventListener("click", function () {
+  chatbotContainer.style.display = "block";
+  mostrarBoton.style.display = 'none';
+});
+
+var fechaHoraInput = document.getElementById('fechaHora');
+
+function actualizarLimites() {
+  var hoy = new Date();
+  hoy.setDate(hoy.getDate() + 1); // Establecer el día siguiente al día actual
+  var minDate = hoy.toISOString().slice(0, 16);
+  var maxDate = new Date(hoy.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16);
+
+  fechaHoraInput.setAttribute('min', minDate);
+  fechaHoraInput.setAttribute('max', maxDate);
+}
+
+actualizarLimites();
+
+// Actualizar los límites cada vez que pasa un día (cada 24 horas)
+setInterval(actualizarLimites, 24 * 60 * 60 * 1000);

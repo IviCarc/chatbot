@@ -18,10 +18,9 @@ def middleware():
 
 @reuniones.route('/reuniones')
 def getAllReuniones():
-    # reuniones = db.session.execute(db.select(Reunion)).scalars()
     if not 'loggedin' in session:
         return redirect(url_for('reuniones.login'))
-    reuniones = Reunion.query.all()
+    reuniones = db.session.execute(db.select(Reunion).order_by(Reunion.fechaHora)).scalars()
     return render_template('layout.html', reuniones=reuniones)
 
 @reuniones.route('/reunion/<int:id>')
@@ -53,8 +52,8 @@ def guardarCliente(nombre,correo, telefono):
     db.session.commit()
     return cliente.id
 
-def guardarAnfitrion(nombre, correo, telefono):
-    anfitrion = Anfitrion(nombre, correo, telefono)
+def guardarAnfitrion(nombre, correo):
+    anfitrion = Anfitrion(nombre, correo)
     db.session.add(anfitrion)
     db.session.commit()
     return jsonify(Anfitrion.serialize(anfitrion))
@@ -64,6 +63,9 @@ def guardarAnfitrion(nombre, correo, telefono):
 def agendarReunion():
     form = request.form
 
+    # Formato al telefono
+    telefono = f"{form['telefono'][:-10]} {form['telefono'][-10:-7]}-{form['telefono'][-7:-4]}-{form['telefono'][-4:]} "
+
     # Agregar el cliente si no existe
     
     cliente_id = None
@@ -71,21 +73,24 @@ def agendarReunion():
     cliente = db.session.execute(db.select(Cliente).filter_by(nombre=form["nombre"])).fetchone()
     
     if cliente == None:
-        cliente_id = guardarCliente(form["nombre"], form["correo"], form["telefono"])
+        cliente_id = guardarCliente(form["nombre"], form["correo"], telefono)
     else:
         cliente_id = cliente[0].id
 
-    # Seleccionar el cliente
+    # Seleccionar el anfitrion de forma random
 
     anfitriones = db.session.execute(db.select(Anfitrion)).fetchall()
-    anfitrion = anfitriones[random.randint(0, len(anfitriones)-1)]
+    print(len(anfitriones))
+    anfitrion = anfitriones[random.randint(0, len(anfitriones)-1)][0]
 
-    reunion = Reunion(form["chat"], form["fechaHora"], cliente_id, 1)
+    reunion = Reunion(form["chat"], form["fechaHora"], cliente_id, anfitrion.id)
 
     db.session.add(reunion)
     db.session.commit()
 
-    enviarCorreo(form["correo"], form["nombre"],  form["telefono"], form["fechaHora"], form["chat"], reunion.id)
+    print(anfitrion.correo)
+
+    enviarCorreo(anfitrion.correo, form["nombre"],  telefono, form["fechaHora"], form["chat"], reunion.id, form["correo"])
 
     return jsonify(Reunion.serialize(reunion))
 

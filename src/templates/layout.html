@@ -29,7 +29,7 @@
 
   
       <!-- contacts list -->
-      <div class="w-50 m-auto">
+      <div class="w-75 m-auto">
         {% for reunion in reuniones %}
           <div class="card mb-5 bg-light shadow-lg ">
             
@@ -47,8 +47,7 @@
                 <div>
                   <h4 class="text-center">Anfitrion</h4>
                   <p class="card-text border-bottom border-dark">{{ reunion.anfitrion.nombre }}</p>
-                  <p class="card-text border-bottom border-dark">{{ reunion.anfitrion.email }}</p>
-                  <p class="card-text border-bottom border-dark">{{ reunion.anfitrion.telefono }}</p>
+                  <p class="card-text border-bottom border-dark">{{ reunion.anfitrion.correo }}</p>
                 </div>
               </div>
             </div>
