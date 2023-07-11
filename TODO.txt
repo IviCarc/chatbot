@@ -3,7 +3,7 @@ BOT:
     Prompt personalizado. ✔️
     Optimizar carga de los documentos.
     Mejores respuestas.
-    Mensajes de bienvenida.
+    Mensajes de bienvenida.✔️
     Indicaciones claras sobre funcionamiento.
 
 FRONTEND.:
