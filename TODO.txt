@@ -28,9 +28,9 @@ API:
 
     UTILIZAR BLUEPRINT ✔️
 
-    Enviar un mail al anfitrion para avisarle de la reunión
+    Enviar un mail al anfitrion para avisarle de la reunión ✔️
     Enviar errores al usuario como por ejemplo fechas invalidas o ya ocupadas
-    Validar fechas
+    Validar fechas 
 
 27/06/23
     Si el usuario escribe "AGENDAR", popea un form (nombre, telefono, correo, calendario, fechahora) ✔️
@@ -42,7 +42,7 @@ API:
 
 29/06/23
     Input calendario, restringir: No poder seleccionar fechas anterior al día actual y entre X e Y hs ✔️
-    Elegir un anfitrion de manera random, sin importar disponibilidad (temporal)
+    Elegir un anfitrion de manera random, sin importar disponibilidad (temporal) ✔️
     Frontend CRUD ✔️
 
 05/07/23
@@ -50,6 +50,6 @@ API:
     Pagina error mala contraseña✔️
 
 06/07/23
-    Enviar mail con la información del cliente a los anfitriones para que confirmen la reunion y sus necesidades
+    Enviar mail con la información del cliente a los anfitriones para que confirmen la reunion y sus necesidades  
     Que hacer si el cliente no puede ninguna de las fechas disponibles
-    Horario de reuniones solo de lunes a viernes de 14 a 15
+    Horario de reuniones solo de lunes a viernes de 14 a 15 
