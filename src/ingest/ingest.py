@@ -111,39 +111,88 @@ def text_to_docs(text: List[str], metadata: Dict[str, str]) -> List[Document]:
     return doc_chunks
 
 
-if __name__ == "__main__":
-    load_dotenv()
+# --------
 
-    path = "src/data/pdfs2"
+def process_pdf(file_path):
+    # Step 1: Parse PDF
+    # raw_pages, metadata = parse_pdf(file_path)
+    # Step 2: Create text chunks
+    # cleaning_functions = [
+    #     merge_hyphenated_words,
+    #     fix_newlines,
+    #     remove_multiple_newlines,
+    # ]
+    # cleaned_text_pdf = clean_text(raw_pages, cleaning_functions)
+    # document_chunks = text_to_docs(cleaned_text_pdf, metadata)
 
-    for pdf in os.listdir(path):
-        file_path = path + "/" + pdf
-        # Step 1: Parse PDF
-        # raw_pages, metadata = parse_pdf(file_path)
-        # Step 2: Create text chunks
-        # cleaning_functions = [
-        #     merge_hyphenated_words,
-        #     fix_newlines,
-        #     remove_multiple_newlines,
-        # ]
-        # cleaned_text_pdf = clean_text(raw_pages, cleaning_functions)
-        # document_chunks = text_to_docs(cleaned_text_pdf, metadata)
+    # Optional: Reduce embedding cost by only using the first 23 pages
+    # document_chunks = document_chunks[:70]
 
-        # Optional: Reduce embedding cost by only using the first 23 pages
-        # document_chunks = document_chunks[:70]
+    loader = PyPDFLoader(file_path)
 
-        loader = PyPDFLoader(file_path)
+    pages = loader.load_and_split()
 
-        pages = loader.load_and_split()
+    # Step 3 + 4: Generate embeddings and store them in DB
+    embeddings = OpenAIEmbeddings()
 
-        # Step 3 + 4: Generate embeddings and store them in DB
-        embeddings = OpenAIEmbeddings()
-        vector_store = Chroma.from_documents(
-            pages,
-            embeddings,
-            collection_name="april-2023-economic",
-            persist_directory="src/data/chroma",
-        )
+    persist_directory = "src/data/chroma"
+    if not os.path.exists(persist_directory):
+        os.makedirs(persist_directory)
+
+    vector_store = Chroma.from_documents(
+        pages,
+        embeddings,
+        collection_name="Chatbot",
+        persist_directory=persist_directory,
+    )
 
     # Save DB locally
     vector_store.persist()
+
+if __name__ == "__main__":
+    load_dotenv()
+
+    path = "src/PDFGuardados"
+
+    for pdf in os.listdir(path):
+        file_path = os.path.join(path, pdf)
+        process_pdf(file_path)
+
+# --------
+
+# if __name__ == "__main__":
+#     load_dotenv()
+
+#     path = "src/carpetapdfs/pdfs2"
+
+#     for pdf in os.listdir(path):
+#         file_path = path + "/" + pdf
+#         # Step 1: Parse PDF
+#         # raw_pages, metadata = parse_pdf(file_path)
+#         # Step 2: Create text chunks
+#         # cleaning_functions = [
+#         #     merge_hyphenated_words,
+#         #     fix_newlines,
+#         #     remove_multiple_newlines,
+#         # ]
+#         # cleaned_text_pdf = clean_text(raw_pages, cleaning_functions)
+#         # document_chunks = text_to_docs(cleaned_text_pdf, metadata)
+
+#         # Optional: Reduce embedding cost by only using the first 23 pages
+#         # document_chunks = document_chunks[:70]
+
+#         loader = PyPDFLoader(file_path)
+
+#         pages = loader.load_and_split()
+
+#         # Step 3 + 4: Generate embeddings and store them in DB
+#         embeddings = OpenAIEmbeddings()
+#         vector_store = Chroma.from_documents(
+#             pages,
+#             embeddings,
+#             collection_name="april-2023-economic",
+#             persist_directory="src/data/chroma",
+#         )
+
+#     # Save DB locally
+#     vector_store.persist()
