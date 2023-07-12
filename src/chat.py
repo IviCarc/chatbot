@@ -49,12 +49,6 @@ def chat(question):
         SystemMessage(content=prompt)
     ]
 
-    reunion = {}
-
-    # if question == "AGENDAR":
-    #     print("UIHAID")
-    # else:
-
     # Generate answer
     print(question)
     response = chain({"question": question, "chat_history": chat_history})
@@ -65,7 +59,5 @@ def chat(question):
     
     chat_history.append(HumanMessage(content=question))
     chat_history.append(AIMessage(content=answer))
-
-    reunion["chat"] = messages_to_dict(chat_history)
 
     return answer
