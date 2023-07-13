@@ -2,96 +2,103 @@
 <html lang="es">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Chatbot</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Chatbot</title>
 
-  <!-- CSS de Bootstrap -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+	<!-- CSS de Bootstrap -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
 
-  <!-- Estilos personalizados -->
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/mainpage.css') }}">
+	<!-- Estilos personalizados -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/mainpage.css') }}">
 
-  <!-- Validacion teléfono -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+	<!-- Validacion teléfono -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 </head>
 
 <body>
-  <div class="containerV1">
-    <div class="center-container">
-      <button class="btn btn-primary" id="mostrarBoton" style="display: block;">Mostrar Chatbot</button>
-    </div>
-  </div>
+	<div class="containerV1">
+		<div class="center-container">
+			<button class="btn btn-primary" id="mostrarBoton" style="display: block;">Mostrar Chatbot</button>
+		</div>
+	</div>
 
-  <div class="chatbot-container" id="chatbotContainer" style="display: none;">
+	<div class="chatbot-container" id="chatbotContainer" style="display: none;">
 
-    <!-- contenido HTML deL chatbot  -->
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 mx-auto">
+		<!-- contenido HTML deL chatbot  -->
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 mx-auto">
 
-          <div class="chat-container card shadow-lg">
-            <div class="chat-header" id="chat-header">
-              <h1 class="chat-title">Chatbot</h1>
-              <h2 class="chat-subtitle">Laboratorio Consultar SRL</h2>
-            </div>
-            <div class="chat-body" id="chat-body">
-              <!-- mensajes del bot -->
-            </div>
+					<div class="chat-container card shadow-lg">
+						<div class="chat-header" id="chat-header">
+							<h1 class="chat-title">Chatbot</h1>
+							<h2 class="chat-subtitle">Laboratorio Consultar SRL</h2>
+						</div>
+						<div class="chat-body" id="chat-body">
+							<!-- mensajes del bot -->
+						</div>
 
-            <div class="card shadow-lg border border-dark box-chat" id="formulario" style="display: none;">
+						<div class="card shadow-lg form-container  w-100 h-100" id="formulario-container"">
+							<form
+								class=" form d-flex position-relative justify-content-evenly flex-column h-100 p-3 w-100" id="form" action="/"
+							method="post">
+							<span class="close-icon-container position-absolute top-0  end-0 mt-3 me-3" role="button"
+								onclick="ocultarFormulario()">
+								<img src="../static/images/x-solid.svg" class="close-icon" alt="">
+							</span>
+							<div class=" border-bottom border-dark p-2 ">
+								<h3 class="text-center m-0">Agendar reunión</h3>
+							</div>
+							<div class="mb-3">
+								<label for="nombre" class="form-label">Nombre:</label>
+								<input type="text" class="form-control" id="nombre" name="nombre">
+							</div>
+							<div class="mb-3" id="fecha-container">
+								<label for="fechaHora" class="form-label">Fecha:</label>
+								<select name="fechaHora" role="button" id="fechaHora" class="form-select"></select>
+							</div>
+							<div class="mb-3">
+								<label for="correo" class="form-label">Correo:</label>
+								<input type="email" class="form-control" id="correo" name="correo">
+							</div>
+							<div class="mb-3">
+								<label for="telefono" class="form-label">Teléfono:</label>
+								<input id="phone" type="tel" name="telefono" class="form-control"
+									oninput="process(event)" />
 
-              <form class=" form d-flex justify-content-center flex-column align-content-around p-3" id="form" action="/"
-                method="post">
-                <div class="mb-3">
-                  <label for="nombre" class="form-label">Nombre:</label>
-                  <input type="text" class="form-control" id="nombre" name="nombre">
-                </div>
-                <div class="mb-3" id="fecha-container">
-                  <label for="fechaHora" class="form-label">Fecha:</label>
-                  <select name="fechaHora" id="fechaHora" class="form-select"></select>
-                </div>
-                <div class="mb-3">
-                  <label for="correo" class="form-label">Correo:</label>
-                  <input type="email" class="form-control" id="correo" name="correo">
-                </div>
-                <div class="mb-3">
-                  <label for="telefono" class="form-label">Teléfono:</label>
-                  <input id="phone" type="tel" name="telefono" class="form-control" oninput="process(event)" />
-                  <!-- <input type="submit" class="btn" value="Verify" /> -->
-                  <div class="alert alert-info" style="display: none;"></div>
-                  <div class="alert alert-error" style="display: none"></div>
-                  <!-- <input type="teL" class="form-control" id="telefono" name="telefono"> -->
-                </div>
+								<div class="alert alert-info" style="display: none;"></div>
+								<div class="alert alert-error" style="display: none"></div>
+							</div>
+							<div class="mb-3">
+								<label for="asunto" class="form-label">Asunto:</label>
+								<input type="text" class="form-control" id="asunto" name="asunto">
+							</div>
+							<button class="btn btn-primary 2-50">Enviar</button>
+							</form>
 
-                <button class="btn btn-primary 2-50">Enviar</button>
+						</div>
 
-              </form>
+						<input style="display: block;" type="text" class="form-control chat-input" id="user-input"
+							name="userInput" placeholder="Escribe un mensaje..." autofocus>
+					</div>
 
-              
+				</div>
 
-            </div>
+			</div>
+		</div>
+	</div>
+	<!-- </div> -->
 
-            <input style="display: block;" type="text" class="form-control chat-input" id="user-input" name="userInput"
-              placeholder="Escribe un mensaje..." autofocus>
+	<!-- JavaScript de Bootstrap y jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
 
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <!-- </div> -->
-
-  <!-- JavaScript de Bootstrap y jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Scripts personalizados -->
-  <script src="{{ url_for('static', filename='styles/main.js') }}"></script>
-  <script src="{{ url_for('static', filename='styles/bot.js') }}"></script>
+	<!-- Scripts personalizados -->
+	<script src="{{ url_for('static', filename='styles/main.js') }}"></script>
+	<script src="{{ url_for('static', filename='styles/formulario-bot.js') }}"></script>
 
 </body>
 
