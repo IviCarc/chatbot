@@ -49,13 +49,19 @@ formulario.addEventListener("submit", function(event) {
   event.preventDefault(); 
 
   let formData = new FormData(document.getElementById("form"));
+  let chat_body = document.getElementById("chat-body").textContent;
+
+  // let chat_body_ascii = chat_body.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
   if (!process()) return // Si el teléfono es inválido, no envía el form
 
-  formData.append('chat', "adad")
+  formData.append('chat', chat_body)
+  console.log(formData.getAll("chat"))
+
   // formData.append('fechaHora', formData.get('fechaHora').replace("T", " "))
   formData.set('fechaHora', formData.get('fechaHora').replace("T", " "))
   console.log(formData.getAll("fechaHora"))
+
   fetch("http://localhost:80/", {method:"POST", body: formData})
   .then(res => res.text())
   .then(res => res.json())

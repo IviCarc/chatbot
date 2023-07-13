@@ -88,10 +88,10 @@ def agendarReunion():
     db.session.add(reunion)
     db.session.commit()
 
-    print(anfitrion.correo)
+    # print(form["chat"])
 
     enviarCorreo(anfitrion.correo, form["nombre"],  telefono, form["fechaHora"], form["chat"], reunion.id, form["correo"])
-
+    
     return jsonify(Reunion.serialize(reunion))
 
 @reuniones.route('/reuniones/<int:id>', methods=["GET", "PUT"])

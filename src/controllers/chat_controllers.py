@@ -48,7 +48,7 @@ def loadPDF():
         # os.remove(temp_path)
 
         # Devolver el resultado del procesamiento
-        alert_message = f"Archivo '{file_name}' procesado exitosamente"
+        alert_message = f"Archivo {file_name} procesado exitosamente"
         return render_template("result.html", alert_message=alert_message)
 
     return render_template("loadPDF.html")

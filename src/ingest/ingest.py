@@ -148,6 +148,7 @@ def process_pdf(file_path):
 
     # Save DB locally
     vector_store.persist()
+    print("La funcion process se ejecuto")
 
 if __name__ == "__main__":
     load_dotenv()
