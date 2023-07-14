@@ -89,23 +89,18 @@ const phoneInput = window.intlTelInput(phoneInputField, {
 		"https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
 });
 
-const info = document.querySelector(".alert-info");
-const error = document.querySelector(".alert-error");
 
 function process(event) {
 	const phoneNumber = phoneInput.getNumber();
-	console.log(phoneNumber)
-	info.style.display = "none";
-	error.style.display = "none";
 
 	if (phoneInput.isValidNumber()) {
-		info.style.display = "block";
-		info.innerHTML = `Número válido ✔️ `;
 		phoneInputField.value = phoneNumber
+		phoneInputField.classList.add('is-valid');
+		phoneInputField.classList.remove('is-invalid');
 		return true
 	} else {
-		error.style.display = "block";
-		error.innerHTML = `Número inválido ❌.`;
+		phoneInputField.classList.add('is-invalid');
+		phoneInputField.classList.remove('is-valid');
 		return false
 	}
 }
