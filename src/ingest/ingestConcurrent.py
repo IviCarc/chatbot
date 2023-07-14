@@ -60,7 +60,7 @@ def process_pdf(file_path: str):
     raw_pages, metadata = parse_pdf(file_path)
     cleaned_text_pdf = [(page_num, clean_text(text)) for page_num, text in raw_pages]
     document_chunks = text_to_docs(cleaned_text_pdf, metadata)
-    document_chunks = document_chunks[:70]  # Limit the number of processed pages
+    # document_chunks = document_chunks[:70]  # Limit the number of processed pages
 
     embeddings = OpenAIEmbeddings()
     vector_store = Chroma.from_documents(
@@ -81,7 +81,7 @@ def text_to_docs(text: List[str], metadata: Dict[str, str]) -> List[Document]:
         text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=1000,
             separators=["\n\n", "\n", ".", "!", "?", ",", " ", ""],
-            chunk_overlap=200,
+            chunk_overlap=0,
         )
         chunks = text_splitter.split_text(page)
         for i, chunk in enumerate(chunks):

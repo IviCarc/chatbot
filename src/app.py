@@ -1,8 +1,7 @@
 from flask import Flask
-from chat import chat
 
 from controllers.controllers import reuniones
-from controllers.chat_controllers import bot_chat, process, bot
+from controllers.chat_controllers import bot
 
 from utils.db import db
 from flask_cors import CORS

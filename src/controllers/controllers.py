@@ -7,6 +7,7 @@ from models.cliente import Cliente
 from models.reunion import Reunion 
 from models.usuario import Usuario
 import random
+from datetime import date, datetime
 
 reuniones = Blueprint("reuniones", __name__)
 
@@ -65,9 +66,10 @@ def agendarReunion():
 
     # Formato al telefono
     telefono = f"{form['telefono'][:-10]} {form['telefono'][-10:-7]}-{form['telefono'][-7:-4]}-{form['telefono'][-4:]} "
+    # Formato a la fecha
+    fechaHora = datetime.strptime(form["fechaHora"], "%d/%m/%Y %H:%M:%S")
 
     # Agregar el cliente si no existe
-    
     cliente_id = None
 
     cliente = db.session.execute(db.select(Cliente).filter_by(nombre=form["nombre"])).fetchone()
@@ -83,7 +85,7 @@ def agendarReunion():
     print(len(anfitriones))
     anfitrion = anfitriones[random.randint(0, len(anfitriones)-1)][0]
 
-    reunion = Reunion(form["chat"], form["fechaHora"], cliente_id, anfitrion.id)
+    reunion = Reunion(form["chat"], fechaHora, cliente_id, anfitrion.id)
 
     db.session.add(reunion)
     db.session.commit()
@@ -170,3 +172,14 @@ def logout():
    # Redirect to login page
    return redirect(url_for('reuniones.login'))
 
+@reuniones.route('/reuniones/fechas_ocupadas', methods=['GET'])
+def obtener_fechas_ocupadas():
+    fechas_ocupadas = []
+    reuniones = Reunion.query.filter(Reunion.fechaHora >= date.today()).all()
+
+    for reunion in reuniones:
+        fecha_ocupada = reunion.fechaHora.strftime("%d/%m/%Y %H:%M:%S")
+        print(fecha_ocupada) 
+        fechas_ocupadas.append(fecha_ocupada)
+
+    return jsonify(fechas_ocupadas)

@@ -13,13 +13,15 @@ FRONTEND.:
     Utilizar un calendario para agendar reuniones en fechas disponibles. (no fechas disponibles) ✔️
     Responsive
     Validacion inputs
-    Validar fechas
+    Validar fechas ✔️
+    Enviar chat History
+    Subir pdfs ✔️
 
 API:
     GET => Envía las reuniones programadas. ✔️
     GET => Envía una reunion por ID. (devuelve un array en vez de un solo obj) ✔️
     GET => Envía las reuniones de un cliente ✔️
-    GET => Envía días disponibles.
+    GET => Envía días no disponibles. ✔️
     POST => agende la reunión. ✔️
     DELETE => Eliminar reuniones. ✔️
     PUT => Editar fecha de las reuniones ✔️
@@ -50,6 +52,6 @@ API:
     Pagina error mala contraseña✔️
 
 06/07/23
-    Enviar mail con la información del cliente a los anfitriones para que confirmen la reunion y sus necesidades
-    Que hacer si el cliente no puede ninguna de las fechas disponibles
-    Horario de reuniones solo de lunes a viernes de 14 a 15 
+    Enviar mail con la información del cliente a los anfitriones para que confirmen la reunion y sus necesidades ✔️
+    Que hacer si el cliente no puede ninguna de las fechas disponibles  
+    Horario de reuniones solo de lunes a viernes de 14 a 15 ✔️

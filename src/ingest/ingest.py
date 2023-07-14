@@ -5,7 +5,7 @@ import os
 import sys
 from typing import Callable, List, Tuple, Dict
 
-from langchain.docstore.document import Document
+# from langchain.docstore.document import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Chroma
 from langchain.embeddings import OpenAIEmbeddings
@@ -91,20 +91,20 @@ def text_to_docs(text: List[str], metadata: Dict[str, str]) -> List[Document]:
 
     for page_num, page in text:
         text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=1000,
-            separators=["\n\n", "\n", ".", "!", "?", ",", " ", ""],
-            chunk_overlap=200,
+            chunk_size=5000,
+            # separators=["\n\n", "\n", ".", "!", "?", ",", " ", ""],
+            chunk_overlap=0,
         )
         chunks = text_splitter.split_text(page)
         for i, chunk in enumerate(chunks):
             doc = Document(
                 page_content=chunk,
-                metadata={
-                    "page_number": page_num,
-                    "chunk": i,
-                    "source": f"p{page_num}-{i}",
-                    # **metadata,
-                },
+                # metadata={
+                #     "page_number": page_num,
+                #     "chunk": i,
+                #     "source": f"p{page_num}-{i}",
+                #     ,
+                # },
             )
             doc_chunks.append(doc)
 

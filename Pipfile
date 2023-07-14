@@ -20,6 +20,10 @@ sqlalchemy = "*"
 flask-sqlalchemy = "*"
 flask-cors = "*"
 flask-mail = "*"
+pypdf = "*"
+typing-inspect = "==0.8.0"
+typing-extensions = "==4.5.0"
+pydantic = "==1.10.11"
 
 [dev-packages]
 
