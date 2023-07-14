@@ -55,3 +55,10 @@ API:
     Enviar mail con la información del cliente a los anfitriones para que confirmen la reunion y sus necesidades ✔️
     Que hacer si el cliente no puede ninguna de las fechas disponibles  
     Horario de reuniones solo de lunes a viernes de 14 a 15 ✔️
+
+14/07/23
+    LoadPDF acepte solo archivos pdf.
+    minimizar el bot
+    agregar input de asunto a "agendar"
+    formato del chat
+    formato utf-8 en el mail
