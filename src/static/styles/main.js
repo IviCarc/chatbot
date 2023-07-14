@@ -31,8 +31,8 @@ function addBotMessage(message) {
 
 const botText1 = "¡Hola! Soy un bot de asistencia tecnica para el Laboratorio Consultar. ¿Que puedo hacer para ayudarte?";
 addBotMessage(botText1);
-  const botText2 = "Si solo quieres agendar una reunion, escribe 'AGENDAR'";
-  addBotMessage(botText2);
+const botText2 = "Si solo quieres agendar una reunion, escribe 'AGENDAR'";
+addBotMessage(botText2);
 
 
 function processUserInput() {
@@ -77,8 +77,6 @@ userInput.addEventListener('keydown', (event) => {
 		document.getElementById("user-input").value = '';
 	}
 });
-
-
 
 
 
@@ -139,39 +137,36 @@ const mostrarFechas = (fechasOcupadas) => {
 
 	newInput.innerHTML = '';
 
-	let contador = 0;
-
+	let cantFechasOcupadas = 0;
 	while (currentDate < oneWeekLater) {
 		if (currentDate.getDay() >= 1 && currentDate.getDay() <= 5) {
 			const option1Value = currentDate.toLocaleDateString('en-GB') + ' 14:00:00';
 			if (!fechasOcupadas.includes(option1Value)) {
 				const option1 = new Option(currentDate.toLocaleDateString('en-GB') + ' 14:00', option1Value)
 				newInput.appendChild(option1);
-			} else contador++;
+			} else cantFechasOcupadas++;
+
 			const option2Value = currentDate.toLocaleDateString('en-GB') + ' 15:00:00';
-			console.log(option2Value)
 			if (!fechasOcupadas.includes(option2Value)) {
 				const option2 = new Option(currentDate.toLocaleDateString('en-GB') + ' 15:00', option2Value)
 				newInput.appendChild(option2);
-			} else contador++
+			}  else {
+				cantFechasOcupadas++
+			}
 		}
 		currentDate.setDate(currentDate.getDate() + 1);
 	}
 
 	// SI NO HAY REUNIONES DISPONIBLES
-	if (contador < 10) {
+	if (cantFechasOcupadas >= 10) {
 		// alert("todas ocupadas")
 		addBotMessage("Lo lamento, no tenemos horarios disponibles. Si requieres atención, envía un mail a consultar@consultar.org. Puedes seguir haciendome consultas");
 		ocultarFormulario();
 	}
 	const fechaContainer = document.getElementById('fecha-container');
 
-	// fechaContainer.appendChild(datalist);
-
-	// newInput.setAttribute("list", "fechasDisponibles");
 	newInput.setAttribute("id", "fechaHora");
 	newInput.setAttribute("name", "fechaHora");
-	// newInput.setAttribute("type", "datetime-local");
 	newInput.classList.add("form-select");
 
 	fechaContainer.appendChild(newInput);
@@ -188,7 +183,7 @@ const mostrarFormulario = () => {
 	formContainer.classList.remove('form-container-invisible');
 	formContainer.classList.add('form-container-visible');
 
-	
+
 }
 
 const ocultarFormulario = () => {
