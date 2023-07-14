@@ -61,7 +61,6 @@ function processUserInput() {
 		.then(data => {
 			const botMessage = data.botMessage;
 
-			console.log(botMessage)
 			addBotMessage(botMessage);
 		})
 		.catch(error => {
@@ -111,14 +110,15 @@ formContainer.addEventListener("submit", function (event) {
 	let formData = new FormData(document.getElementById("form"));
 
 	if (!process()) return // Si el teléfono es inválido, no envía el form
-
+	if (document.querySelectorAll('.is-valid').length < 5) {
+		return
+	}	
 	formData.append('chat', "adad")
 	formData.set('fechaHora', formData.get('fechaHora').replace("T", " "))
-	console.log(formData.getAll("fechaHora"))
 	fetch("http://localhost:80/", { method: "POST", body: formData })
 		.then(res => res.text())
-		.then(res => res.json())
-		.catch(err => console.log(err))
+		.then(res => console.log(res))
+		.catch(err => alert(err))
 
 	ocultarFormulario(); // Oculta el formulario después de enviarlo
 });
@@ -129,8 +129,8 @@ const mostrarFechas = (fechasOcupadas) => {
 	const currentDate = new Date();
 	const oneWeekLater = new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000);
 	const newInput = document.getElementById('fechaHora');
-
-	newInput.innerHTML = '';
+	
+	// newInput.innerHTML = '';
 
 	let cantFechasOcupadas = 0;
 	while (currentDate < oneWeekLater) {
@@ -154,15 +154,10 @@ const mostrarFechas = (fechasOcupadas) => {
 
 	// SI NO HAY REUNIONES DISPONIBLES
 	if (cantFechasOcupadas >= 10) {
-		// alert("todas ocupadas")
 		addBotMessage("Lo lamento, no tenemos horarios disponibles. Si requieres atención, envía un mail a consultar@consultar.org. Puedes seguir haciendome consultas");
 		ocultarFormulario();
 	}
 	const fechaContainer = document.getElementById('fecha-container');
-
-	newInput.setAttribute("id", "fechaHora");
-	newInput.setAttribute("name", "fechaHora");
-	newInput.classList.add("form-select");
 
 	fechaContainer.appendChild(newInput);
 }
@@ -187,6 +182,16 @@ const ocultarFormulario = () => {
 
 	document.getElementById("user-input").style.display = "block";
 
-	info.style.display = "none"
-	error.style.display = "none"
+	select = document.getElementById('fechaHora')
+
+	// Elimina las fechas ya agregadas
+	while (select.childNodes.length > 1) {
+		select.removeChild(select.lastChild);
+	}
+
+	// Elimina las clases de validacion
+	for (let element of document.querySelectorAll('.is-valid, .is-invalid')) {
+		element.classList.remove('is-valid');
+		element.classList.remove('is-invalid');
+	}
 }

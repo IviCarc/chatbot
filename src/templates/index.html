@@ -55,15 +55,17 @@
 							</div>
 							<div class="mb-3">
 								<label for="nombre" class="form-label">Nombre:</label>
-								<input type="text" class="form-control" id="nombre" name="nombre">
+								<input type="text" class="form-control" id="nombre" name="nombre" oninput="validateInput(this)">
 							</div>
 							<div class="mb-3" id="fecha-container">
 								<label for="fechaHora" class="form-label">Fecha:</label>
-								<select name="fechaHora" role="button" id="fechaHora" class="form-select"></select>
+								<select name="fechaHora" role="button" oninput="validateInput(this)" id="fechaHora" class="form-select">
+									<option selected disabled >Seleccione una fecha</option>
+								</select>
 							</div>
 							<div class="mb-3">
 								<label for="correo" class="form-label">Correo:</label>
-								<input type="email" class="form-control" id="correo" name="correo">
+								<input type="email" class="form-control" oninput="validateInput(this)" id="correo" name="correo">
 							</div>
 							<div class="mb-3">
 								<label for="telefono" class="form-label ">Teléfono:</label>
@@ -72,7 +74,7 @@
 							</div>
 							<div class="mb-3">
 								<label for="asunto" class="form-label">Asunto:</label>
-								<input type="text" class="form-control" id="asunto" name="asunto">
+								<input type="text" class="form-control" id="asunto" oninput="validateInput(this)" name="asunto">
 							</div>
 							<button class="btn btn-primary 2-50">Enviar</button>
 							</form>
@@ -95,7 +97,7 @@
 
 	<!-- Scripts personalizados -->
 	<script src="{{ url_for('static', filename='styles/main.js') }}"></script>
-	<script src="{{ url_for('static', filename='styles/formulario-bot.js') }}"></script>
+	<script src="{{ url_for('static', filename='styles/validar-forms.js') }}"></script>
 
 </body>
 
