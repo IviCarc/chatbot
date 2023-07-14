@@ -11,10 +11,10 @@ FRONTEND.:
     Enviar POST a la API para agendar la reunión. ✔️
     Funcionalidad CRUD ✔️
     Utilizar un calendario para agendar reuniones en fechas disponibles. (no fechas disponibles) ✔️
-    Responsive
-    Validacion inputs
+    Responsive ver reuniones
+    Validacion inputs ✔️
     Validar fechas ✔️
-    Enviar chat History
+    Enviar chat History ✔️
     Subir pdfs ✔️
 
 API:
@@ -25,14 +25,12 @@ API:
     POST => agende la reunión. ✔️
     DELETE => Eliminar reuniones. ✔️
     PUT => Editar fecha de las reuniones ✔️
-    [OPCIONAL] POST >= Cargar archivos PDF para entrenar al bot.
+    [OPCIONAL] POST >= Cargar archivos PDF para entrenar al bot.✔️
     AGREGAR ORM ✔️
 
     UTILIZAR BLUEPRINT ✔️
 
     Enviar un mail al anfitrion para avisarle de la reunión ✔️
-    Enviar errores al usuario como por ejemplo fechas invalidas o ya ocupadas
-    Validar fechas 
 
 27/06/23
     Si el usuario escribe "AGENDAR", popea un form (nombre, telefono, correo, calendario, fechahora) ✔️
@@ -57,8 +55,8 @@ API:
     Horario de reuniones solo de lunes a viernes de 14 a 15 ✔️
 
 14/07/23
-    LoadPDF acepte solo archivos pdf.
+    LoadPDF acepte solo archivos pdf. ✔️
     minimizar el bot
-    agregar input de asunto a "agendar"
+    agregar input de asunto a "agendar" ✔️
     formato del chat
     formato utf-8 en el mail
