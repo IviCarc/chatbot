@@ -23,33 +23,45 @@ def process():
 @bot.route('/loadPDF', methods=["POST", "GET"])
 def loadPDF():
     if request.method == "POST":
-        file = request.files['documentos']
-        print(file)
+        alert_message = ""
+        for file in request.files.getlist("documentos"):
+            file_name = file.filename
+            if not file_name.lower().endswith(".pdf"):
+                return render_template("loadPDF.html", alert_message="Solo se aceptan archivos PDF.")
+            
+        # print(request.files)
+        for file in request.files.getlist("documentos"):
+            print(file)
+            file_name = file.filename
 
-        folder_path = "src/PDFGuardados/"  
-        # temp_path = os.path.join(folder_path, "test2.pdf")
+            folder_path = "src/PDFGuardados/"
 
-        if not os.path.exists(folder_path):
-            os.makedirs(folder_path)
+            if not os.path.exists(folder_path):
+                os.makedirs(folder_path)
 
-        file_name = file.filename
-        file_path = os.path.join(folder_path, file_name)
 
-        # os.makedirs(folder_path)
-        # temp_path = "test.pdf"
+            # file_name = file.filename
 
-        file.save(file_path)
+            # Validar la extensión del archivo
+            
+            file_path = os.path.join(folder_path, file_name)
+            file.save(file_path)
 
-        # Llamar a la función parse_pdf para procesar el archivo PDF
-        # pages, metadata = parse_pdf(temp_path)    
-        pdf = process_pdf(file_path)
+            # Llamar a la función parse_pdf para procesar el archivo PDF
+            # pages, metadata = parse_pdf(temp_path)    
+            pdf = process_pdf(file_path)
 
-        # Eliminar el archivo temporal
-        # os.remove(temp_path)
+            # Eliminar el archivo temporal
+            # os.remove(temp_path)
 
-        # Devolver el resultado del procesamiento
-        alert_message = f"Archivo {file_name} procesado exitosamente"
-        return render_template("result.html", alert_message=alert_message)
+            # Devolver el resultado del procesamiento
+            alert_message += f"Archivo {file_name} procesado exitosamente \n \n"
+        return render_template("loadPDF.html", alert_message=alert_message)
+
+
+
+
+
 
     return render_template("loadPDF.html")
 

@@ -157,6 +157,11 @@ if __name__ == "__main__":
 
     for pdf in os.listdir(path):
         file_path = os.path.join(path, pdf)
+
+        # if not pdf.lower().endswith(".pdf"):
+        #     print(f"Archivo no válido: {pdf}. Solo se aceptan archivos PDF.")
+        #     continue
+
         process_pdf(file_path)
 
 # --------

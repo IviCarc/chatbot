@@ -114,7 +114,8 @@ formContainer.addEventListener("submit", function (event) {
 
 	formData.append('chat', "adad")
 	formData.set('fechaHora', formData.get('fechaHora').replace("T", " "))
-	console.log(formData.getAll("fechaHora"))
+	// console.log(formData.getAll("fechaHora"))
+
 	fetch("http://localhost:80/", { method: "POST", body: formData })
 		.then(res => res.text())
 		.then(res => res.json())
