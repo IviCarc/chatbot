@@ -5,7 +5,7 @@ import os
 import sys
 from typing import Callable, List, Tuple, Dict
 
-# from langchain.docstore.document import Document
+from langchain.docstore.document import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Chroma
 from langchain.embeddings import OpenAIEmbeddings
