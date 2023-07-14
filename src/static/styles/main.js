@@ -18,8 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
     chatBody.appendChild(botMessage);
   }
 
-  const botText = "¡Hola! Soy un bot de asistencia tecnica para el Laboratorio Consultar. ¿Que puedo hacer para ayudarte?";
-  addBotMessage(botText);
+  const botText1 = "¡Hola! Soy un bot de asistencia tecnica para el Laboratorio Consultar. ¿Que puedo hacer para ayudarte?";
+  addBotMessage(botText1);
+  const botText2 = "Si solo quieres agendar una reunion, escribe 'AGENDAR'";
+  addBotMessage(botText2);
 
 
   function processUserInput() {

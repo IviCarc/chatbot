@@ -17,8 +17,8 @@
     <!-- <h1>twitter-bootstrap</h1> -->
 
     <div class="login container w-50 mt-5 bg-light shadow-lg p-2 card ">
-        <h1 class="ms-5 mt-3">Subir PDF's</h1>
-        <form action="" class="d-flex flex-column align-items-center p-3" method="post">
+        <h1 class="ms-3 mt-3">Subir PDF's</h1>
+        <form action="" class="d-flex flex-column align-items-center p-3" method="post" enctype="multipart/form-data">
 
             <!-- <div class="w-100">
                 <label for="username">Nombre de usuario</label>
@@ -31,23 +31,28 @@
             </div> -->
 
             <div class="w-100">
-                <label for="password">Ingrese los documentos necesarios</label>
+
+                <label class="p-2">Ingrese los documentos necesarios</label>
+
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
-                        <div class="input-group-text">
+                        <!-- <div class="input-group-text">
                             <i class="fas fa-lock p-1 img-fluid"></i>
-                        </div>
+                        </div> -->
                     </div>
-                    <input type="password" class="form-control" name="password" placeholder="Subiendo PDF's...." id="password"
-                        required>
+                    <input type="file" class="form-control" name="documentos" placeholder="Subiendo PDF's...." id="documentos" required multiple>
+                    <button id="cancelar" class="btn btn-danger"  onclick="cancelarSubida()">X</button>
                 </div>
-                <label for="password">
-
-                </label>
+  
             </div>
+            
             <input type="submit" class="btn btn-primary w-25" value="Enviar">
         </form>
     </div>
 </body>
-
+<script>
+    function cancelarSubida() {
+        document.getElementById("documentos").value = "";
+    }
+</script>
 </html>
