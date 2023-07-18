@@ -60,3 +60,7 @@ API:
     agregar input de asunto a "agendar" ✔️
     formato del chat
     formato utf-8 en el mail
+
+14/07/23
+    Mostrar chat en editar reunión.
+    Mostrar asunto en el mail
