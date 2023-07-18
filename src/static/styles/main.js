@@ -112,8 +112,19 @@ formContainer.addEventListener("submit", function (event) {
 	if (!process()) return // Si el teléfono es inválido, no envía el form
 	if (document.querySelectorAll('.is-valid').length < 5) {
 		return
-	}	
-	formData.append('chat', "adad")
+	}
+
+	let chat = "";
+
+	for (const [indice, mensaje] of document.querySelectorAll('.message').entries()) {
+		if (indice <2 ) continue // Saltea los dos primeros mensajes del bot
+
+		mensaje.classList.contains('bot-message') ? chat += "BOT: " : chat += "USUARIO: "
+
+		chat += mensaje.textContent + "/" ;
+	}
+
+	formData.append('chat', chat)
 	formData.set('fechaHora', formData.get('fechaHora').replace("T", " "))
 	fetch("http://localhost:80/", { method: "POST", body: formData })
 		.then(res => res.text())

@@ -1,9 +1,10 @@
 from utils.db import db
 from utils.serializer import Serializer
+from sqlalchemy.dialects.mysql import LONGTEXT
 
 class Reunion(db.Model, Serializer):
     id = db.Column(db.Integer, primary_key = True)
-    chat = db.Column(db.String(500))
+    chat = db.Column(LONGTEXT)
     fechaHora = db.Column(db.DateTime)
     idCliente = db.Column(db.Integer, db.ForeignKey('cliente.id'))
     idAnfitrion = db.Column(db.Integer, db.ForeignKey('anfitrion.id'))
@@ -21,6 +22,6 @@ class Reunion(db.Model, Serializer):
 
     def serialize(self):
         d = Serializer.serialize(self)
-        del d["anfitrion"]
+        del d["anfitrion"]  
         del d["cliente"]
         return d

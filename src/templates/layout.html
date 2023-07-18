@@ -12,6 +12,10 @@
     /> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/mainpage.css') }}">
+
   <!-- <link
       rel="stylesheet"
       href="{{url_for('static', filename='css/main.css')}}"
@@ -22,7 +26,7 @@
 
   {% include 'partials/_navbar.html' %}
 
-  <div class="container p-2">
+  <div class="container p-2 layout-container">
     <!-- FORM -->
 
 
@@ -54,7 +58,7 @@
 
           <a href="reuniones/{{ reunion.id }}" class="btn btn-primary">Actualizar</a>
           <button onclick="sendDelete({{reunion.id}})" class="btn btn-danger">Eliminar</button>
-
+          <a href="reuniones/{{ reunion.id }}/chat" class="btn btn-success">Ver chat</a>
 
         </div>
       </div>

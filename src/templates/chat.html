@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/mainpage.css') }}">
+    <!-- CSS de Bootstrap -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="chatbot-container" id="chatbotContainer" >
+
+		<!-- contenido HTML deL chatbot  -->
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 mx-auto">
+                    <div class="chat-container card shadow-lg">
+                        <div class="chat-header" id="chat-header">
+                            <h1 class="chat-title">Conversación con {{cliente}}</h1>
+                        </div>
+                        <div class="chat-body" id="chat-body">
+                
+                            {%for mensaje in chat%}
+                                {% if "BOT: " in mensaje %}
+                                    <div class="message bot-message">{{mensaje.replace("BOT: ", "")}}</div>
+                                {%endif%}
+                                {% if "USUARIO: " in mensaje %}
+                                    <div class="message user-message">{{mensaje.replace("USUARIO: ", "")}}</div>
+                                {%endif%}
+                            {%endfor%}
+                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

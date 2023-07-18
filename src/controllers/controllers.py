@@ -117,6 +117,16 @@ def editarReunion(id):
 
     return render_template("update.html", reunion = reunion, anfitriones = anfitriones)
 
+@reuniones.route('/reuniones/<int:id>/chat', methods=["GET"])
+def verChat(id):    
+    if not 'loggedin' in session:
+        return redirect(url_for('reuniones.login'))
+    reunion = Reunion.query.get(id)
+
+    cliente = db.session.execute(db.select(Cliente).filter_by(id=reunion.idCliente)).fetchone()[0]
+
+    return render_template("chat.html", chat = reunion.chat.split("/"), cliente = cliente.nombre)
+
 @reuniones.route('/<int:id>', methods=["DELETE"])
 def eliminarReunion(id):
     if not 'loggedin' in session:

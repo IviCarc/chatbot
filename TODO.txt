@@ -4,7 +4,7 @@ BOT:
     Optimizar carga de los documentos.
     Mejores respuestas.
     Mensajes de bienvenida.✔️
-    Indicaciones claras sobre funcionamiento.
+    Indicaciones claras sobre funcionamiento. ✔️
 
 FRONTEND.:
     Enviar mensajes.✔️
@@ -32,6 +32,9 @@ API:
 
     Enviar un mail al anfitrion para avisarle de la reunión ✔️
 
+    Usuarios con el mismo nombre
+    Usuarios duplicados por diferencias de tipeo
+
 27/06/23
     Si el usuario escribe "AGENDAR", popea un form (nombre, telefono, correo, calendario, fechahora) ✔️
     Conectar el form con la DB ✔️
@@ -56,11 +59,11 @@ API:
 
 14/07/23
     LoadPDF acepte solo archivos pdf. ✔️
-    minimizar el bot
+    minimizar el bot ✔️
     agregar input de asunto a "agendar" ✔️
-    formato del chat
+    formato del chat ✔️
     formato utf-8 en el mail
 
 14/07/23
-    Mostrar chat en editar reunión.
-    Mostrar asunto en el mail
+    Mostrar chat en editar reunión. ✔️
+    Mostrar asunto en el mail ✔️
