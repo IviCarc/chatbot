@@ -132,7 +132,7 @@ def process_pdf(file_path):
 
     pages = loader.load_and_split()
 
-    # Step 3 + 4: Generate embeddings and store them in DB
+    # Genera los embeddings y los guarda en la DB
     embeddings = OpenAIEmbeddings()
 
     persist_directory = "src/data/chroma"

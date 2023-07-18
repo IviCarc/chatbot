@@ -24,6 +24,7 @@ def process():
 def loadPDF():
     if request.method == "POST":
         alert_message = ""
+        
         for file in request.files.getlist("documentos"):
             file_name = file.filename
             if not file_name.lower().endswith(".pdf"):

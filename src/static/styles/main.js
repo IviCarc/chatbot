@@ -14,6 +14,13 @@ mostrarBoton.addEventListener("click", function () {
 	mostrarBoton.style.display = 'none';
 });
 
+const minimizar = document.getElementById("minimizar");
+
+minimizar.addEventListener("click", function () {
+	chatbotContainer.style.display = "none";
+	mostrarBoton.style.display = 'block';
+})
+
 function addUserMessage(message) {
 	const userMessage = document.createElement('div');
 	userMessage.classList.add('message', 'user-message');
@@ -113,6 +120,7 @@ formContainer.addEventListener("submit", function (event) {
 	if (!process()) return // Si el teléfono es inválido, no envía el form
 
 	formData.append('chat', "adad")
+
 	formData.set('fechaHora', formData.get('fechaHora').replace("T", " "))
 	// console.log(formData.getAll("fechaHora"))
 

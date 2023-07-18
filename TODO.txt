@@ -57,8 +57,8 @@ API:
     Horario de reuniones solo de lunes a viernes de 14 a 15 ✔️
 
 14/07/23
-    LoadPDF acepte solo archivos pdf.
+    LoadPDF acepte solo archivos pdf.✔️
     minimizar el bot
-    agregar input de asunto a "agendar"
+    agregar input de asunto a "agendar" ✔️
     formato del chat
     formato utf-8 en el mail
