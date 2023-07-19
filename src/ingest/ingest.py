@@ -132,7 +132,7 @@ def process_pdf(file_path):
 
     pages = loader.load_and_split()
 
-    # Step 3 + 4: Generate embeddings and store them in DB
+    # Genera los embeddings y los guarda en la DB
     embeddings = OpenAIEmbeddings()
 
     persist_directory = "src/data/chroma"
@@ -157,6 +157,11 @@ if __name__ == "__main__":
 
     for pdf in os.listdir(path):
         file_path = os.path.join(path, pdf)
+
+        # if not pdf.lower().endswith(".pdf"):
+        #     print(f"Archivo no válido: {pdf}. Solo se aceptan archivos PDF.")
+        #     continue
+
         process_pdf(file_path)
 
 # --------

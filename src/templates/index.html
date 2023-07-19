@@ -8,6 +8,9 @@
 
 	<!-- CSS de Bootstrap -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+	
+	<!-- Iconos Bootstrap -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 	<!-- Estilos personalizados -->
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/mainpage.css') }}">
@@ -16,7 +19,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+	<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"> -->
+
 </head>
 
 <body>
@@ -26,7 +30,7 @@
 		</div>
 	</div>
 
-	<div class="chatbot-container" id="chatbotContainer" style="display: none;">
+	<div class="chatbot-container animacion-minimizar" id="chatbotContainer" style="display: none;">
 
 		<!-- contenido HTML deL chatbot  -->
 		<div class="container">
@@ -34,15 +38,16 @@
 				<div class="col-lg-6 mx-auto">
 
 					<div class="chat-container card shadow-lg">
-						<div class="chat-header" id="chat-header">
+						<div class="chat-header position-relative" id="chat-header">
 							<h1 class="chat-title">Chatbot</h1>
 							<h2 class="chat-subtitle">Laboratorio Consultar SRL</h2>
+							<button class="btn btn-outline-secondary position-absolute top-50 end-0 translate-middle " id="minimizar" style="display: block;"><i class="bi bi-arrow-down"></i></button>
 						</div>
 						<div class="chat-body" id="chat-body">
 							<!-- mensajes del bot -->
 						</div>
 
-						<div class="card shadow-lg form-container  w-100 h-100" id="formulario-container"">
+						<div class="card shadow-lg form-container  w-100 h-100" id="formulario-container">
 							<form
 								class=" form d-flex position-relative justify-content-evenly flex-column h-100 p-3 w-100" id="form" action="/"
 							method="post">

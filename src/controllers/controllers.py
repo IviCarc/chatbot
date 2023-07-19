@@ -92,7 +92,7 @@ def agendarReunion():
 
     # print(form["chat"])
 
-    enviarCorreo(anfitrion.correo, form["nombre"],  telefono, form["fechaHora"], form["chat"], reunion.id, form["correo"])
+    enviarCorreo(anfitrion.correo, form["nombre"],  telefono, form["fechaHora"], form["asunto"], reunion.id, form["correo"])
     
     return jsonify(Reunion.serialize(reunion))
 
@@ -189,7 +189,7 @@ def obtener_fechas_ocupadas():
 
     for reunion in reuniones:
         fecha_ocupada = reunion.fechaHora.strftime("%d/%m/%Y %H:%M:%S")
-        print(fecha_ocupada) 
+        # print(fecha_ocupada) 
         fechas_ocupadas.append(fecha_ocupada)
 
     return jsonify(fechas_ocupadas)

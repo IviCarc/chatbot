@@ -12,7 +12,16 @@ const chatbotContainer = document.getElementById("chatbotContainer");
 mostrarBoton.addEventListener("click", function () {
 	chatbotContainer.style.display = "block";
 	mostrarBoton.style.display = 'none';
+	chatbotContainer.classList.remove('animacion');
 });
+
+const botonminimizar = document.getElementById("minimizar");
+
+botonminimizar.addEventListener("click", function () {
+	// chatbotContainer.style.display = "none";
+	mostrarBoton.style.display = 'block';
+	chatbotContainer.classList.add('animacion');
+})
 
 function addUserMessage(message) {
 	const userMessage = document.createElement('div');
@@ -126,6 +135,7 @@ formContainer.addEventListener("submit", function (event) {
 
 	formData.append('chat', chat)
 	formData.set('fechaHora', formData.get('fechaHora').replace("T", " "))
+	console.log(formData.getAll("fechaHora"))
 	fetch("http://localhost:80/", { method: "POST", body: formData })
 		.then(res => res.text())
 		.then(res => console.log(res))
