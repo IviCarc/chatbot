@@ -144,6 +144,61 @@ html {
 	visibility: visible;
 }
 
+#minimizar{
+	border: none;
+	color: black;
+	background-color: transparent;
+}
+
+#minimizar:hover{
+	/* border: #000; */
+	background-color: black;
+	color: white;
+}
+
+
+.animacion-minimizar {
+	/* transition: 0.3s ease-in-out; */
+	-webkit-animation: mostrarChatbot .5s;
+	animation: mostrarChatbot .5s;
+}
+
+.animacion {
+	transition: 0.3s ease-in-out;
+	-webkit-animation: ocultarChatbot .5s;
+	animation: ocultarChatbot .5s;
+	visibility: hidden;
+} 
+
+@keyframes ocultarChatbot {
+	0% {
+		top: 50%;
+		opacity: 1;
+		visibility: visible;
+	}
+
+	100% {
+		top: 100%;
+		opacity: 0;
+		visibility: hidden;
+	}
+} 
+
+@keyframes mostrarChatbot {
+	0% {
+		top: 100%;
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	100% {
+		opacity: 1;
+		top: 50%;
+		visibility: visible;
+	}
+}
+
+
 @keyframes ocultarFormulario {
 	0% {
 		top: 50%;

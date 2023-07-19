@@ -12,13 +12,15 @@ const chatbotContainer = document.getElementById("chatbotContainer");
 mostrarBoton.addEventListener("click", function () {
 	chatbotContainer.style.display = "block";
 	mostrarBoton.style.display = 'none';
+	chatbotContainer.classList.remove('animacion');
 });
 
-const minimizar = document.getElementById("minimizar");
+const botonminimizar = document.getElementById("minimizar");
 
-minimizar.addEventListener("click", function () {
-	chatbotContainer.style.display = "none";
+botonminimizar.addEventListener("click", function () {
+	// chatbotContainer.style.display = "none";
 	mostrarBoton.style.display = 'block';
+	chatbotContainer.classList.add('animacion');
 })
 
 function addUserMessage(message) {
