@@ -3,9 +3,9 @@
 
 <div class="col-md-4 offset-md-4 bg-light shadow-lg">
   <div class="card card-body ">
-    <h1>Editar reunión</h1>
-    <form id="form">
-      <div class="mb-3">
+    <h2 class="text-center">Editar reunión</h2>
+    <form id="form" class="d-flex justify-content-center flex-column align-items-center">
+      <div class="mb-3 w-100">
         <label for="fechaHora" class="mb-1">Nueva fecha:</label>
         <input
           type="datetime-local"
@@ -16,7 +16,7 @@
         />
       </div>
 
-      <div class="mb-3">
+      <div class="mb-3 w-100">
         <label for="anfitrion" class="mb-1">Anfitrión:</label>
         <select role="button" name="anfitrion" id="anfitrion" class="form-select">
           <option value="{{ reunion.anfitrion.nombre }}" default>{{ reunion.anfitrion.nombre }}</option>
@@ -28,7 +28,7 @@
         </select>
       </div>
 
-      <button class="btn btn-primary m-auto" onclick="sendUpdate({{ reunion.id }})">Update</button>
+      <button class="btn btn-primary m-auto" onclick="sendUpdate({{ reunion.id }})">Actualizar</button>
     </form>
   </div>
 </div>

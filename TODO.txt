@@ -64,6 +64,13 @@ API:
     formato del chat ✔️
     formato utf-8 en el mail
 
-14/07/23
+18/07/23
     Mostrar chat en editar reunión. ✔️
     Mostrar asunto en el mail ✔️
+
+19/07/23
+    Enviar mail al usuario notificando un cambio de fecha en la reunión.
+    Corregir que pasa si un usuario comparte nombre con otro o comete un error de tipeo.
+    Limpiar inputs del usuario al ingresar su nombre, pasarlos solo a minusculas por ej. "Benito" != "benito"
+    Hashear la contraseña del login. Ahora mismo se guarda como string, es inseguro y muy suceptible a hackeos.
+    
