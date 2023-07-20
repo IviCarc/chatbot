@@ -8,7 +8,7 @@ Este documento explicara la arquitectura y conceptos para poder usar facilmente 
 
 ### Requisitos previos
 
-Se necesitara utilizar la version 3.10 de Python y Pipenv. 
+Se necesitara utilizar Pipenv, MySQL y la version 3.10 de Python. 
 
 Nota: Para usuarios de **Windows**,  es posible que deba eliminar `Pipfile.lock` antes de continuar con la instalación.
 
