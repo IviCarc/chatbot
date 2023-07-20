@@ -38,7 +38,7 @@ Para alterar los comportamientos del bot el prompt tiene que estar bien escrito,
 Tambien poder intentar solucionar algun mal funcionamiento que este teniendo el bot con las respuestas,
 o con su rol.
 
-Este prompt se encuentra con los demás archivos del programa, llamandose `prompt2.txt`.
+Este prompt se encuentra con los demás archivos del programa, llamandose `prompt.txt`.
 
 
 ### Instalación
