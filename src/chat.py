@@ -39,7 +39,7 @@ def chat(question):
     load_dotenv("../")
 
 
-    with open('prompt2.txt', 'r', encoding='utf-8') as file:
+    with open('prompt.txt', 'r', encoding='utf-8') as file:
         # Lee todo el contenido del archivo
         prompt = file.read()
 

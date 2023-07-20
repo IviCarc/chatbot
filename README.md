@@ -31,6 +31,15 @@ EMAIL_USER: El correo electrónico desde el cual se enviarán los mails hacia lo
 
 EMAIL_PASSWORD: Una contraseña válida para ese mail. En caso de utilizar un Gmail, deberán brindarse permisos especiales a dicho correo electrónico y generar una contraseña de aplicación. Ver la documentación para cada tipo de correo electrónico.
 
+### Configuración del prompt
+
+En este Chatbot es posible ir cambiando el prompt dependiendo de las necesidades requeridas.
+Para alterar los comportamientos del bot el prompt tiene que estar bien escrito, ser claro y preciso.
+Tambien poder intentar solucionar algun mal funcionamiento que este teniendo el bot con las respuestas,
+o con su rol.
+
+Este prompt se encuentra con los demás archivos del programa, llamandose `prompt2.txt`.
+
 
 ### Instalación
 
