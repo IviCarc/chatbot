@@ -1,7 +1,7 @@
-const URL = '192.168.0.229:80';
+const URL = window.location.origin;
 
 function sendDelete(id) {
-    fetch(`http://${ URL }/${ id }`, { method: 'DELETE' })
+    fetch(`${ URL }/${ id }`, { method: 'DELETE' })
         .then(res => res.text())
         .then(res => window.location.reload())
         .catch(err => console.log(err))
@@ -22,7 +22,7 @@ sendUpdate = (id) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(Object.fromEntries(formData))
     }
-    fetch(`http://${ URL }/reuniones/${ id }`, config)
+    fetch(`${ URL }/reuniones/${ id }`, config)
         .then(res => res.text())
         .then(res => window.location.href = '/reuniones')
         .catch(err => console.log(err))

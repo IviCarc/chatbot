@@ -9,7 +9,7 @@ const formContainer = document.getElementById("formulario-container");
 const mostrarBoton = document.getElementById("mostrarBoton");
 const chatbotContainer = document.getElementById("chatbotContainer");
 
-const URL = '192.168.0.229:80';
+const URL = window.location.origin;
 
 mostrarBoton.addEventListener("click", function () {
 	chatbotContainer.style.display = "block";
@@ -138,7 +138,7 @@ formContainer.addEventListener("submit", function (event) {
 	formData.append('chat', chat)
 	formData.set('fechaHora', formData.get('fechaHora').replace("T", " "))
 	console.log(formData.getAll("fechaHora"))
-	fetch(`http://${URL}/`, { method: "POST", body: formData })
+	fetch(`${URL}/`, { method: "POST", body: formData })
 		.then(res => res.text())
 		.then(res => console.log(res))
 		.catch(err => alert(err))
@@ -186,7 +186,7 @@ const mostrarFechas = (fechasOcupadas) => {
 }
 
 const mostrarFormulario = () => {
-	fetch(`http://${URL}/reuniones/fechas_ocupadas`)
+	fetch(`${URL}/reuniones/fechas_ocupadas`)
 		.then(res => res.json())
 		.then(res => mostrarFechas(res))
 		.catch(err => console.log(err))

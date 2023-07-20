@@ -11,14 +11,11 @@ from datetime import date, datetime
 
 reuniones = Blueprint("reuniones", __name__)
 
-@reuniones.before_request
-def middleware():
-    print("Middleware")
-
 ### METODOS GET ###
 
 @reuniones.route('/reuniones')
 def getAllReuniones():
+    print(request)
     if not 'loggedin' in session:
         return redirect(url_for('reuniones.login'))
     reuniones = db.session.execute(db.select(Reunion).order_by(Reunion.fechaHora)).scalars()
@@ -129,9 +126,9 @@ def verChat(id):
 
 @reuniones.route('/<int:id>', methods=["DELETE"])
 def eliminarReunion(id):
+    print(request)
     if not 'loggedin' in session:
         return redirect(url_for('reuniones.login'))
-    print(id)
     reunion = Reunion.query.get(id)
     db.session.delete(reunion)
     db.session.commit()
@@ -162,6 +159,7 @@ def login():
             msg = "La contraseña no es correcta"
         else:
             session['loggedin'] = True
+            print(session['loggedin'])
             session['id'] = account.id
             print(session['id'])
             session['username'] = account.username
@@ -175,6 +173,7 @@ def login():
 
 @reuniones.route('/logout')
 def logout():
+   print("LOGOUT")
     # Remove session data, this will log the user out
    session.pop('loggedin', None)
    session.pop('id', None)
@@ -186,6 +185,8 @@ def logout():
 def obtener_fechas_ocupadas():
     fechas_ocupadas = []
     reuniones = Reunion.query.filter(Reunion.fechaHora >= date.today()).all()
+
+
 
     for reunion in reuniones:
         fecha_ocupada = reunion.fechaHora.strftime("%d/%m/%Y %H:%M:%S")
