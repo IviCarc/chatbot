@@ -1,72 +1,63 @@
-# 💬 Chat with your PDF 
+# 💬 Chatbot PDF 
 
-## 👷️ Architecture
+## 👷️ Architectura
 
-Link: https://youtu.be/FuqdVNB_8c0
+Este documento explicara la arquitectura y conceptos para poder usar facilmente el chatbot. Usando LangChain, ChromaDB y OpenAI's API.
 
-This tutorial goes over the architecture and concepts used for easily chatting with your PDF using LangChain, ChromaDB and OpenAI's API.
+## 💻 Empezando
 
-## 💻 Getting Started
+### Requisitos previos
 
-### Prerequisites
+Se necesitara utilizar la version 3.10 de Python y Pipenv. 
 
-You will need Python and Pipenv.
+Nota: Para usuarios de **Windows**,  es posible que deba eliminar `Pipfile.lock` antes de continuar con la instalación.
 
-Note: For **Windows** users, you might need to delete the `Pipfile.lock` before proceeding with the installation.
+### Archivos de configuración
 
-### Installation
+En el directorio del proyecto, existe un archivo “.env”. Este es un archivo que se encarga de almacenar variables de entorno sensibles, que no pueden figurar en el código ya que comprometen la seguridad del sistema, pero son necesarios. 
+El programa se encarga de leerlos directamente desde el archivo.
 
-1. Clone the repository:
+URL: Esta variable se encarga de definir todos los endpoint a los que debe dirigirse la API.
 
-```bash
-git clone https://github.com/edrickdch/chat-pdf
-```
+OPENAI_API_KEY: Esta es la clave brindada por OpenAI para hacer uso de sus servicios. Debe obtenerse desde una cuenta en la misma.
 
-2. Navigate to the project directory:
+DBPASS: La contraseña de la base de datos.
 
-```bash
-cd chat-pdf
-```
+SQLALCHEMY_DATABASE_URI: El string de conexión que requiere SQLAlchemy para conectarse a la DB.
 
-3. Install the required dependencies using Pipenv:
+SECRET_KEY: Es una clave definida para el uso seguro de variables de configuración dentro de Flask.
+
+EMAIL_USER: El correo electrónico desde el cual se enviarán los mails hacia los anfitriones.
+
+EMAIL_PASSWORD: Una contraseña válida para ese mail. En caso de utilizar un Gmail, deberán brindarse permisos especiales a dicho correo electrónico y generar una contraseña de aplicación. Ver la documentación para cada tipo de correo electrónico.
+
+
+### Instalación
+
+1. Instalar las dependencias requeridas usando Pipenv: 
 
 ```bash
 pipenv install
 ```
 
-4. Activate the Pipenv shell:
+2. Activar el Pipenv shell:
 
 ```bash
 pipenv shell
 ```
 
-5. Create a .env file with your OpenAI API key (Replace with your key):
+3. Empezar a usar el Chatbot:
 
 ```bash
-cat 'OPENAI_API_KEY="sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXX"' >  .env
+pipenv run dev
 ```
 
-6. Run the ingestion:
+## 🔗 Links utiles
 
-```bash
-python src/ingest.py
-```
-
-7. Run the conversation:
-
-```bash
-python src/single-pdf.py
-```
-
-## 🔗 Useful Links
-
-- PDF: https://www.imf.org/en/Publications/WEO/Issues/2023/04/11/world-economic-outlook-april-2023 
 - OpenAI: https://platform.openai.com/ 
 - LangChain: https://python.langchain.com/en/latest/index.html  
 - Chroma DB: https://docs.trychroma.com/ 
 
-## 💌 Newsletter
 
-👇 Subscribe to the newsletter if you're interested in building more AI applications 
 
-https://practical-ai-builder.beehiiv.com/
+

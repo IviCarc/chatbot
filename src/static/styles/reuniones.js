@@ -7,7 +7,7 @@ function sendDelete(id) {
 
 // if (window.location.href == 'http://localhost:80/reuniones/') {
 // }
-try{
+try {
     document.getElementById("form").addEventListener("submit", (e) => {
         e.preventDefault()
     });
@@ -24,6 +24,6 @@ sendUpdate = (id) => {
     }
     fetch("http://localhost:80/reuniones/" + id, config)
         .then(res => res.text())
-        .then(res => window.location.href='/reuniones')
+        .then(res => window.location.href = '/reuniones')
         .catch(err => console.log(err))
 }
